@@ -1,0 +1,8 @@
+.venv
+.DS_Store
+__pycache__
+data.csv
+file.py
+label_encoder.pkl
+scaler.pkl
+test_sample.csv
