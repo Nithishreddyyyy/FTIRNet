@@ -1,0 +1,12 @@
+              precision    recall  f1-score   support
+
+        HDPE       1.00      1.00      1.00       118
+        LDPE       1.00      1.00      1.00        99
+         PET       1.00      1.00      1.00        96
+          PP       0.98      1.00      0.99       101
+          PS       0.99      0.98      0.98        91
+         PVC       1.00      0.99      0.99        95
+
+    accuracy                           0.99       600
+   macro avg       0.99      0.99      0.99       600
+weighted avg       1.00      0.99      0.99       600
