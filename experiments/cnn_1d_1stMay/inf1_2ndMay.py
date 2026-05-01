@@ -25,7 +25,7 @@ WN_START = 600
 WN_END = 1800
 WN_STEP = 2
 
-SMOOTH_WINDOW = 11
+SMOOTH_WINDOW = 21
 SMOOTH_POLYORDER = 3
 
 # =========================================================
@@ -112,6 +112,7 @@ spectral_df = spectral_df.sort_values(
 )
 
 x = spectral_df["Wavenumber"].values
+
 y = spectral_df["Intensity"].values
 
 # =========================================================
@@ -124,6 +125,7 @@ unique_x, unique_indices = np.unique(
 )
 
 x = x[unique_indices]
+
 y = y[unique_indices]
 
 # =========================================================
@@ -146,10 +148,15 @@ y_interp = np.interp(
 # TRANSMITTANCE -> ABSORBANCE
 # =========================================================
 
-y_interp = np.clip(y_interp, 1e-6, None)
+y_interp = np.clip(
+    y_interp,
+    1e-6,
+    None
+)
 
-y_interp = -np.log10(y_interp / 100.0)
-
+y_interp = -np.log10(
+    y_interp / 100.0
+)
 
 # =========================================================
 # SMOOTH
@@ -162,15 +169,16 @@ y_interp = savgol_filter(
 )
 
 # =========================================================
-# NORMALIZE
+# MIN-MAX NORMALIZATION
 # =========================================================
 
-mean = np.mean(y_interp)
-std = np.std(y_interp)
+y_min = np.min(y_interp)
+
+y_max = np.max(y_interp)
 
 y_interp = (
-    y_interp - mean
-) / (std + 1e-8)
+    y_interp - y_min
+) / (y_max - y_min + 1e-8)
 
 # =========================================================
 # TENSOR
