@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  
+  --color-dark-bg: #09090b;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-dark-bg);
+    color: #f3f4f6;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #09090b 70%);
+    background-attachment: fixed;
+  }
+}
+
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+}
+
+@utility glass-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  transition-property: all;
+  transition-duration: 300ms;
+}
+
+@utility text-gradient {
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, var(--color-primary-500), var(--color-accent-500));
+}
+
+@utility bg-glow {
+  position: absolute;
+  inset: -0.25rem;
+  background-image: linear-gradient(to right, var(--color-primary-500), var(--color-accent-500));
+  border-radius: 0.5rem;
+  filter: blur(8px);
+  opacity: 0.25;
+  transition-property: opacity, filter;
+  transition-duration: 1000ms;
+}
+
+.group:hover .bg-glow {
+  opacity: 0.5;
+  transition-duration: 200ms;
+}
