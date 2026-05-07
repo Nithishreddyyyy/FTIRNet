@@ -6,12 +6,14 @@ import DeepLearningFTIRAnalysis from './pages/DeepLearningFTIRAnalysis'
 import Dashboard from './pages/Dashboard'
 import Reports from './pages/Reports'
 import AboutUs from './pages/AboutUs'
+import ChatBot from './components/ChatBot'
 
 function App() {
   return (
     <div className="relative min-h-screen selection:bg-primary-500/30 font-sans text-gray-100 overflow-x-hidden">
       {/* Global Background Gradient Map/Noise could go here if not in CSS */}
       <Navbar />
+      <ChatBot />
       
       <main> 
         <Routes>
