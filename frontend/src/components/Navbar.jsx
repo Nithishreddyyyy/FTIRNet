@@ -1,14 +1,15 @@
 import React from 'react';
 import { Microscope, Search, User } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const location = useLocation();
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Dashboard', path: '/#dashboard' },
+    { name: 'Dashboard', path: '/dashboard' },
     { name: 'FTIR Analysis', path: '/ftir-analysis' },
-    { name: 'Reports', path: '/#reports' },
+    { name: 'Reports', path: '/reports' },
   ];
 
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="glass rounded-full px-6 py-3 flex items-center justify-between">
+        <div className="glass rounded-full px-6 py-3 flex items-center justify-between border-white/10 shadow-2xl">
           
           {/* Logo & Project Name */}
           <NavLink to="/" className="flex items-center gap-3 cursor-pointer group">
@@ -32,20 +33,45 @@ const Navbar = () => {
           </NavLink>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            {navLinks.map((link) => (
-              <NavLink 
-                key={link.name} 
-                to={link.path}
-                className={({ isActive }) => 
-                  `hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary-500 after:transition-all after:duration-300 ${
-                    isActive ? 'text-white after:w-full' : 'after:w-0 hover:after:w-full'
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
+          <div className="hidden md:flex items-center gap-2">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path || (link.path === '/' && location.pathname === '/');
+              
+              return (
+                <NavLink 
+                  key={link.name} 
+                  to={link.path}
+                  end={link.path === '/'}
+                  className={({ isActive: linkActive }) => 
+                    `px-4 py-2 text-sm font-medium transition-all duration-300 relative group
+                    ${linkActive ? 'text-white' : 'text-gray-400 hover:text-gray-200'}`
+                  }
+                >
+                  {({ isActive: linkActive }) => (
+                    <>
+                      <span className="relative z-10">{link.name}</span>
+                      
+                      {/* Smooth Underline Transition */}
+                      {linkActive && (
+                        <motion.div 
+                          layoutId="activeUnderline"
+                          className="absolute bottom-0 left-2 right-2 h-[2px] bg-gradient-to-r from-primary-500 to-accent-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.5)]"
+                          initial={false}
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30
+                          }}
+                        />
+                      )}
+                      
+                      {/* Hover Effect Glow */}
+                      <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                    </>
+                  )}
+                </NavLink>
+              );
+            })}
           </div>
 
           {/* Right Section: Search & Profile */}
@@ -55,11 +81,12 @@ const Navbar = () => {
               <input 
                 type="text" 
                 placeholder="Search analysis..." 
-                className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-gray-200 w-48 transition-all focus:w-64"
+                className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-gray-200 w-36 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-gray-600"
               />
             </div>
-            <button className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors">
-              <User className="w-4 h-4 text-gray-300" />
+            <button className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors relative group">
+              <div className="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+              <User className="w-4 h-4 text-gray-300 relative z-10" />
             </button>
           </div>
 

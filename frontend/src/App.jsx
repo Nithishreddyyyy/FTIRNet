@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import DeepLearningFTIRAnalysis from './pages/DeepLearningFTIRAnalysis'
+import Dashboard from './pages/Dashboard'
+import Reports from './pages/Reports'
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       <main> 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ftir-analysis" element={<DeepLearningFTIRAnalysis />} />
+          <Route path="/reports" element={<Reports />} />
         </Routes>
       </main>
       
