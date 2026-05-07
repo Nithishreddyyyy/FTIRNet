@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import OverviewCards from './components/OverviewCards'
-import DashboardPreview from './components/DashboardPreview'
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <main>
         <Hero />
         <OverviewCards />
-        <DashboardPreview />
       </main>
       
       {/* Simple Footer Placeholder */}

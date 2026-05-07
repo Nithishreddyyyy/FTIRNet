@@ -25,7 +25,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            {['Home', 'Dashboard', 'Detection', 'Reports'].map((item) => (
+            {['Home', 'Dashboard', 'Reports'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
