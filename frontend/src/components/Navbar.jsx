@@ -10,6 +10,7 @@ const Navbar = () => {
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'FTIR Analysis', path: '/ftir-analysis' },
     { name: 'Reports', path: '/reports' },
+    { name: 'About Us', path: '/about' },
   ];
 
   return (

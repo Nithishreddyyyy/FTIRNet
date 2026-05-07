@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import DeepLearningFTIRAnalysis from './pages/DeepLearningFTIRAnalysis'
 import Dashboard from './pages/Dashboard'
 import Reports from './pages/Reports'
+import AboutUs from './pages/AboutUs'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ftir-analysis" element={<DeepLearningFTIRAnalysis />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </main>
       
