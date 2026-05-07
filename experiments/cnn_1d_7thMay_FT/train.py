@@ -52,7 +52,9 @@ print(f"Dataset Shape : {df.shape}")
 # =========================================================
 
 X = df.drop(columns=["Sample_ID", "Polymer"]).values
+
 y = df["Polymer"].values
+
 groups = df["Sample_ID"]
 
 print(f"Feature Shape : {X.shape}")
@@ -63,6 +65,7 @@ print(f"Classes       : {sorted(set(y))}\n")
 # =========================================================
 
 le = LabelEncoder()
+
 y = le.fit_transform(y)
 
 joblib.dump(le, "models/label_encoder_2ndMay_Pre.pkl")
@@ -78,9 +81,11 @@ gss = GroupShuffleSplit(test_size=0.2, n_splits=1, random_state=42)
 train_idx, test_idx = next(gss.split(X, y, groups))
 
 X_train, X_test = X[train_idx], X[test_idx]
+
 y_train, y_test = y[train_idx], y[test_idx]
 
 train_ids = set(groups.iloc[train_idx])
+
 test_ids = set(groups.iloc[test_idx])
 
 print(
@@ -112,9 +117,17 @@ print("===================================")
 print("Model Initialized")
 print("===================================\n")
 
-criterion = nn.CrossEntropyLoss()
+# =========================================================
+# LOSS FUNCTION
+# =========================================================
 
-optimizer = optim.Adam(model.parameters(), lr=LR)
+criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+
+# =========================================================
+# OPTIMIZER
+# =========================================================
+
+optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=1e-4)
 
 # =========================================================
 # TRAINING
@@ -133,9 +146,9 @@ for epoch in range(EPOCHS):
 
     print(f"Epoch {epoch + 1}/{EPOCHS} | Loss: {loss:.4f} | Test Acc: {acc:.4f}")
 
-    # =========================================
+    # =====================================================
     # SAVE BEST MODEL
-    # =========================================
+    # =====================================================
 
     if acc > best_acc:
         best_acc = acc
@@ -149,10 +162,10 @@ for epoch in range(EPOCHS):
             "models/base_cnn.pth",
         )
 
-        print("✅ Best model updated")
+        print("Best model updated")
 
 # =========================================================
-# EVALUATION
+# FINAL EVALUATION
 # =========================================================
 
 print("\n===================================")
@@ -173,6 +186,7 @@ with torch.no_grad():
         _, predicted = torch.max(preds, 1)
 
         y_pred.extend(predicted.cpu().numpy())
+
         y_true.extend(yb.numpy())
 
 # =========================================================
@@ -212,7 +226,8 @@ plt.close()
 # =========================================================
 
 print("\n===================================")
-print("✅ Base CNN Training Complete")
+print("Base CNN Training Complete")
+print(f"Best Accuracy : {best_acc:.4f}")
 print("Best Model Saved:")
 print("models/base_cnn.pth")
 print("===================================\n")

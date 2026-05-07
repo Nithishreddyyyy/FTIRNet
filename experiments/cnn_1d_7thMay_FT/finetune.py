@@ -1,17 +1,17 @@
-import os
 import argparse
+import os
+
+import joblib
+import pandas as pd
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import pandas as pd
-import joblib
-
+from dataset import FTIRDataset
+from model import FTIRCNN
 from sklearn.preprocessing import LabelEncoder
 from torch.utils.data import DataLoader
 
-from dataset import FTIRDataset
-from model import FTIRCNN
-from utils import train_one_epoch, evaluate
+from utils import evaluate, train_one_epoch
 
 DEVICE = "mps"
 
@@ -22,13 +22,12 @@ LABEL_ENCODER = "models/label_encoder_2ndMay_Pre.pkl"
 
 BATCH_SIZE = 16
 EPOCHS = 10
-LR = 1e-4
+LR = 5e-5
 
 os.makedirs("models/pretrained", exist_ok=True)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--file", required=True,
-                    help="Path to fine-tuning CSV")
+parser.add_argument("--file", required=True, help="Path to fine-tuning CSV")
 args = parser.parse_args()
 
 print("\n===================================")
@@ -60,52 +59,38 @@ if X.shape[1] != input_size:
         f"CSV has {X.shape[1]} points"
     )
 
-loader = DataLoader(
-    FTIRDataset(X, y),
-    batch_size=BATCH_SIZE,
-    shuffle=True
-)
+loader = DataLoader(FTIRDataset(X, y), batch_size=BATCH_SIZE, shuffle=True)
 
-model = FTIRCNN(
-    input_size=input_size,
-    num_classes=len(le.classes_)
-).to(device)
+model = FTIRCNN(input_size=input_size, num_classes=len(le.classes_)).to(device)
 
 model.load_state_dict(checkpoint["model_state_dict"])
 
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=LR)
+criterion = nn.CrossEntropyLoss(label_smoothing=0.05)
+optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=1e-4)
 
 print("\n===================================")
 print("Fine-Tuning Started")
 print("===================================\n")
 
 for epoch in range(EPOCHS):
-    loss = train_one_epoch(
-        model,
-        loader,
-        optimizer,
-        criterion,
-        device
-    )
+    loss = train_one_epoch(model, loader, optimizer, criterion, device)
 
     acc = evaluate(model, loader, device)
 
-    print(
-        f"Epoch {epoch+1}/{EPOCHS} | "
-        f"Loss: {loss:.4f} | "
-        f"Acc: {acc:.4f}"
-    )
+    print(f"Epoch {epoch + 1}/{EPOCHS} | Loss: {loss:.4f} | Acc: {acc:.4f}")
 
 save_path = "models/pretrained/pretrained_cnn.pth"
 
-torch.save({
-    "model_state_dict": model.state_dict(),
-    "input_size": input_size,
-    "classes": le.classes_.tolist()
-}, save_path)
+torch.save(
+    {
+        "model_state_dict": model.state_dict(),
+        "input_size": input_size,
+        "classes": le.classes_.tolist(),
+    },
+    save_path,
+)
 
 print("\n===================================")
-print("✅ Fine-Tuned Model Saved")
+print("Fine-Tuned Model Saved")
 print(save_path)
 print("===================================\n")
