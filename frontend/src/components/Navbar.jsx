@@ -1,8 +1,16 @@
 import React from 'react';
 import { Microscope, Search, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Dashboard', path: '/#dashboard' },
+    { name: 'FTIR Analysis', path: '/ftir-analysis' },
+    { name: 'Reports', path: '/#reports' },
+  ];
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -14,25 +22,29 @@ const Navbar = () => {
         <div className="glass rounded-full px-6 py-3 flex items-center justify-between">
           
           {/* Logo & Project Name */}
-          <div className="flex items-center gap-3 cursor-pointer group">
+          <NavLink to="/" className="flex items-center gap-3 cursor-pointer group">
             <div className="p-2 bg-primary-500/20 rounded-full group-hover:bg-primary-500/30 transition-colors">
               <Microscope className="w-5 h-5 text-primary-500" />
             </div>
             <span className="font-semibold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400">
               Microplastics AI
             </span>
-          </div>
+          </NavLink>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-            {['Home', 'Dashboard', 'Reports'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-primary-500 hover:after:w-full after:transition-all after:duration-300"
+            {navLinks.map((link) => (
+              <NavLink 
+                key={link.name} 
+                to={link.path}
+                className={({ isActive }) => 
+                  `hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary-500 after:transition-all after:duration-300 ${
+                    isActive ? 'text-white after:w-full' : 'after:w-0 hover:after:w-full'
+                  }`
+                }
               >
-                {item}
-              </a>
+                {link.name}
+              </NavLink>
             ))}
           </div>
 

@@ -1,16 +1,20 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import OverviewCards from './components/OverviewCards'
+import Home from './pages/Home'
+import DeepLearningFTIRAnalysis from './pages/DeepLearningFTIRAnalysis'
 
 function App() {
   return (
     <div className="relative min-h-screen selection:bg-primary-500/30 font-sans text-gray-100 overflow-x-hidden">
       {/* Global Background Gradient Map/Noise could go here if not in CSS */}
       <Navbar />
-      <main>
-        <Hero />
-        <OverviewCards />
+      
+      <main> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ftir-analysis" element={<DeepLearningFTIRAnalysis />} />
+        </Routes>
       </main>
       
       {/* Simple Footer Placeholder */}
