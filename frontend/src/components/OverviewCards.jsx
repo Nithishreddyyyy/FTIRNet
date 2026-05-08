@@ -8,32 +8,32 @@ const cardsData = [
     value: '14,205',
     trend: '+12.5%',
     icon: Layers,
-    color: 'from-blue-500/20 to-cyan-500/20',
-    iconColor: 'text-cyan-400'
+    color: 'from-blue-500/10 to-cyan-500/10 dark:from-blue-500/20 dark:to-cyan-500/20',
+    iconColor: 'text-cyan-600 dark:text-cyan-400'
   },
   {
     title: 'Detection Accuracy',
     value: '98.4%',
     trend: '+0.8%',
     icon: Target,
-    color: 'from-emerald-500/20 to-teal-500/20',
-    iconColor: 'text-emerald-400'
+    color: 'from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/20 dark:to-teal-500/20',
+    iconColor: 'text-emerald-600 dark:text-emerald-400'
   },
   {
     title: 'Reports Generated',
     value: '3,842',
     trend: '+5.2%',
     icon: FileText,
-    color: 'from-purple-500/20 to-indigo-500/20',
-    iconColor: 'text-purple-400'
+    color: 'from-purple-500/10 to-indigo-500/10 dark:from-purple-500/20 dark:to-indigo-500/20',
+    iconColor: 'text-purple-600 dark:text-purple-400'
   },
   {
     title: 'Active Analyses',
     value: '24',
     trend: 'Live',
     icon: Activity,
-    color: 'from-orange-500/20 to-red-500/20',
-    iconColor: 'text-orange-400'
+    color: 'from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20',
+    iconColor: 'text-orange-600 dark:text-orange-400'
   }
 ];
 
@@ -56,15 +56,15 @@ const itemVariants = {
 
 const OverviewCards = () => {
   return (
-    <section id="dashboard" className="py-12 relative z-10">
+    <section id="dashboard" className="py-8 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-white mb-2">System Overview</h2>
-          <p className="text-sm text-gray-400">Real-time metrics from the global detection network.</p>
+
+        <div className="mb-10 pb-6 border-b-2 border-slate-400 dark:border-white/10">
+          <h2 className="text-3xl font-black text-black dark:text-white tracking-tighter mb-2">System Overview</h2>
+          <p className="text-sm font-bold text-[#334155] dark:text-gray-400 leading-relaxed max-w-2xl">Real-time metrics from the global microplastics detection network, monitored by our distributed neural nodes.</p>
         </div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -74,28 +74,28 @@ const OverviewCards = () => {
           {cardsData.map((card, index) => {
             const Icon = card.icon;
             return (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 className="group relative"
               >
                 {/* Glow Effect */}
-                <div className="bg-glow" />
-                
+                <div className="bg-glow opacity-0 dark:opacity-20" />
+
                 {/* Card Content */}
-                <div className="glass-card relative p-6 h-full flex flex-col">
+                <div className="glass-card relative p-6 h-full flex flex-col border-2 border-slate-300 dark:border-white/10 hover:shadow-2xl hover:border-primary-500/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xl bg-white dark:bg-white/5">
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`p-3 rounded-xl bg-gradient-to-br ${card.color} border border-white/5`}>
+                    <div className={`p-3 rounded-2xl bg-white dark:bg-gradient-to-br ${card.color} border-2 border-slate-200 dark:border-white/5 shadow-md`}>
                       <Icon className={`w-6 h-6 ${card.iconColor}`} />
                     </div>
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full bg-white/5 border border-white/10 ${card.trend === 'Live' ? 'text-primary-400 animate-pulse' : 'text-emerald-400'}`}>
+                    <span className={`text-[9px] font-black px-3 py-1 rounded-full bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-sm ${card.trend === 'Live' ? 'text-primary-800 dark:text-primary-400 animate-pulse' : 'text-emerald-700 dark:text-emerald-400'}`}>
                       {card.trend}
                     </span>
                   </div>
-                  
-                  <div>
-                    <h3 className="text-gray-400 text-sm font-medium mb-1">{card.title}</h3>
-                    <p className="text-3xl font-bold text-white tracking-tight">{card.value}</p>
+
+                  <div className="space-y-1">
+                    <h3 className="text-[#64748b] dark:text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">{card.title}</h3>
+                    <p className="text-2xl font-black text-black dark:text-white tracking-tighter">{card.value}</p>
                   </div>
                 </div>
               </motion.div>

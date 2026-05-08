@@ -1,10 +1,12 @@
 import React from 'react';
-import { Microscope, Search, User } from 'lucide-react';
+import { Microscope, Search, User, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Dashboard', path: '/dashboard' },
@@ -21,31 +23,29 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="glass rounded-full px-6 py-3 flex items-center justify-between border-white/10 shadow-2xl">
+        <div className="glass rounded-full px-6 py-2 flex items-center justify-between shadow-xl border-primary-500/30 dark:border-white/10 bg-white/95 dark:bg-black/20 backdrop-blur-xl">
           
           {/* Logo & Project Name */}
           <NavLink to="/" className="flex items-center gap-3 cursor-pointer group">
-            <div className="p-2 bg-primary-500/20 rounded-full group-hover:bg-primary-500/30 transition-colors">
-              <Microscope className="w-5 h-5 text-primary-500" />
+            <div className="p-2 bg-primary-700/10 dark:bg-primary-500/20 rounded-full group-hover:bg-primary-700/20 dark:group-hover:bg-primary-500/30 transition-all shadow-sm border border-primary-500/20">
+              <Microscope className="w-5 h-5 text-primary-800 dark:text-primary-500" />
             </div>
-            <span className="font-semibold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400">
+            <span className="font-black text-lg tracking-tighter text-black dark:text-white">
               Microplastics AI
             </span>
           </NavLink>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.path || (link.path === '/' && location.pathname === '/');
-              
               return (
                 <NavLink 
                   key={link.name} 
                   to={link.path}
                   end={link.path === '/'}
                   className={({ isActive: linkActive }) => 
-                    `px-4 py-2 text-sm font-medium transition-all duration-300 relative group
-                    ${linkActive ? 'text-white' : 'text-gray-400 hover:text-gray-200'}`
+                    `px-4 py-1.5 text-[10px] font-black transition-all duration-300 relative group uppercase tracking-[0.2em]
+                    ${linkActive ? 'text-black dark:text-white' : 'text-slate-900 dark:text-gray-400 hover:text-black dark:hover:text-white'}`
                   }
                 >
                   {({ isActive: linkActive }) => (
@@ -56,7 +56,7 @@ const Navbar = () => {
                       {linkActive && (
                         <motion.div 
                           layoutId="activeUnderline"
-                          className="absolute bottom-0 left-2 right-2 h-[2px] bg-gradient-to-r from-primary-500 to-accent-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.5)]"
+                          className="absolute bottom-1 left-3 right-3 h-[2px] bg-gradient-to-r from-primary-600 to-accent-600 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.4)] dark:shadow-[0_0_12px_rgba(14,165,233,0.5)]"
                           initial={false}
                           transition={{
                             type: "spring",
@@ -67,7 +67,7 @@ const Navbar = () => {
                       )}
                       
                       {/* Hover Effect Glow */}
-                      <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                      <div className="absolute inset-0 bg-primary-500/5 dark:bg-white/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
                     </>
                   )}
                 </NavLink>
@@ -75,19 +75,42 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Right Section: Search & Profile */}
+          {/* Right Section: Search & Profile & Theme Toggle */}
           <div className="flex items-center gap-4">
-            <div className="relative hidden sm:block">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <div className="relative hidden sm:block group/search">
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600 dark:text-gray-400 group-focus-within/search:text-primary-800 transition-colors" />
               <input 
                 type="text" 
                 placeholder="Search analysis..." 
-                className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-gray-200 w-36 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-gray-600"
+                className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full py-1.5 pl-10 pr-4 text-[10px] font-black focus:outline-none focus:ring-2 focus:ring-primary-500/20 text-slate-900 dark:text-gray-100 w-40 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-slate-500 dark:placeholder:text-gray-600 shadow-sm"
               />
             </div>
-            <button className="p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors relative group">
-              <div className="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
-              <User className="w-4 h-4 text-gray-300 relative z-10" />
+
+            {/* Theme Toggle Button */}
+            <button 
+              onClick={toggleTheme}
+              className="p-2 bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-full transition-all relative group overflow-hidden shadow-sm"
+              aria-label="Toggle theme"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={theme}
+                  initial={{ y: 15, opacity: 0, rotate: 45 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: -15, opacity: 0, rotate: -45 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {theme === 'dark' ? (
+                    <Moon className="w-4 h-4 text-primary-400 relative z-10" />
+                  ) : (
+                    <Sun className="w-4 h-4 text-amber-600 relative z-10" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+
+            <button className="p-2 bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-full transition-all relative group shadow-sm">
+              <User className="w-4 h-4 text-slate-600 dark:text-gray-300 relative z-10" />
             </button>
           </div>
 
