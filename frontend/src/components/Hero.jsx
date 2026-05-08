@@ -18,11 +18,6 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col gap-8"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white dark:bg-white/5 border-2 border-slate-400 dark:border-white/10 w-fit shadow-xl backdrop-blur-md">
-            <span className="w-3 h-3 rounded-full bg-primary-700 animate-pulse shadow-[0_0_12px_#0369a1]" />
-            <span className="text-[11px] font-black text-slate-950 dark:text-gray-300 tracking-[0.25em] uppercase">Phase 1 Active</span>
-          </div>
-          
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] text-black dark:text-white">
             AI-Powered <br />
             <span className="text-gradient">Microplastics</span> <br />

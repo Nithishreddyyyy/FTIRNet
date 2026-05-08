@@ -59,11 +59,6 @@ const OverviewCards = () => {
     <section id="dashboard" className="py-8 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="mb-10 pb-6 border-b-2 border-slate-400 dark:border-white/10">
-          <h2 className="text-3xl font-black text-black dark:text-white tracking-tighter mb-2">System Overview</h2>
-          <p className="text-sm font-bold text-[#334155] dark:text-gray-400 leading-relaxed max-w-2xl">Real-time metrics from the global microplastics detection network, monitored by our distributed neural nodes.</p>
-        </div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
