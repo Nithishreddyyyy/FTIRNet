@@ -1,33 +1,35 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
-  
+
   --color-primary-400: #38bdf8;
   --color-primary-500: #0ea5e9;
   --color-primary-600: #0284c7;
   --color-accent-400: #a78bfa;
   --color-accent-500: #8b5cf6;
   --color-accent-600: #7c3aed;
-  
+
   --color-dark-bg: #09090b;
 }
 
 :root {
   --bg-color: #f1f5f9;
-  --text-primary: #000000;
-  --text-secondary: #1e293b;
-  --heading-color: #000000;
-  --bg-gradient: radial-gradient(circle at 0% 0%, #cbd5e1 0%, transparent 50%), 
-                 radial-gradient(circle at 100% 0%, #cbd5e1 0%, transparent 50%),
-                 radial-gradient(circle at 50% 100%, #e2e8f0 0%, #f1f5f9 100%);
-  --glass-bg: #ffffff;
-  --glass-border: #cbd5e1;
-  --glass-shadow: rgba(0, 0, 0, 0.1);
-  --card-bg: #ffffff;
-  --nav-bg: #ffffff;
-  --input-bg: #ffffff;
-  --input-border: #cbd5e1;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --heading-color: #111827;
+  --bg-gradient: radial-gradient(circle at 0% 0%, #e2e8f0 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, #cbd5e1 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, #f8fafc 0%, #f1f5f9 100%);
+  --glass-bg: rgba(226, 232, 240, 0.6);
+  --glass-border: rgba(148, 163, 184, 0.5);
+  --glass-shadow: rgba(15, 23, 42, 0.15);
+  --card-bg: rgba(226, 232, 240, 0.8);
+  --nav-bg: rgba(226, 232, 240, 0.85);
+  --input-bg: #f8fafc;
+  --input-border: #94a3b8;
 }
 
 .dark {
@@ -55,30 +57,20 @@
     background-attachment: fixed;
     transition: background-color 0.5s ease, background-image 0.5s ease, color 0.5s ease;
   }
-  
-  /* Force high contrast text in light mode for all headings and paragraphs */
-  :root:not(.dark) h1, 
-  :root:not(.dark) h2, 
-  :root:not(.dark) h3, 
-  :root:not(.dark) h4, 
-  :root:not(.dark) p,
-  :root:not(.dark) span:not(.text-gradient) {
-    color: #000000;
-  }
 }
 
 @utility glass {
-  background-color: var(--glass-bg);
+  background-color: var(--glass-bg) !important;
   backdrop-filter: blur(6px) saturate(160%);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--glass-border) !important;
   box-shadow: 0 4px 24px var(--glass-shadow);
   transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 @utility glass-card {
-  background-color: var(--card-bg);
+  background-color: var(--card-bg) !important;
   backdrop-filter: blur(4px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--glass-border) !important;
   box-shadow: 0 10px 30px -5px var(--glass-shadow);
   border-radius: 1.25rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);

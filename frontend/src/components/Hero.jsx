@@ -55,15 +55,15 @@ const Hero = () => {
             <motion.div 
               animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="absolute top-10 right-10 w-48 h-48 glass rounded-full flex items-center justify-center border-white/40 dark:border-white/20 shadow-xl"
+              className="absolute top-10 right-10 w-48 h-48 glass rounded-full flex items-center justify-center border-primary-300/60 dark:border-white/20 bg-primary-50/50 dark:bg-transparent shadow-[0_10px_30px_rgba(14,165,233,0.15)] dark:shadow-xl"
             >
-              <Droplets className="w-12 h-12 text-primary-500 dark:text-primary-400 opacity-60 dark:opacity-50" />
+              <Droplets className="w-12 h-12 text-primary-600 dark:text-primary-400 opacity-80 dark:opacity-50" />
             </motion.div>
             
             <motion.div 
               animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
               transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-              className="absolute bottom-10 left-10 w-64 h-64 glass rounded-3xl rotate-12 flex items-center justify-center border-white/40 dark:border-white/20 shadow-xl overflow-hidden"
+              className="absolute bottom-10 left-10 w-64 h-64 glass rounded-3xl rotate-12 flex items-center justify-center border-accent-300/60 dark:border-white/20 bg-accent-50/50 dark:bg-transparent shadow-[0_10px_30px_rgba(139,92,246,0.15)] dark:shadow-xl overflow-hidden"
             >
                {/* Mock data grid lines */}
                <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ea5e91a_1px,transparent_1px),linear-gradient(to_bottom,#0ea5e91a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]" />

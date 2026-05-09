@@ -23,7 +23,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="glass rounded-full px-6 py-2 flex items-center justify-between shadow-xl border-primary-500/30 dark:border-white/10 bg-white/95 dark:bg-black/20 backdrop-blur-xl">
+        <div className="glass rounded-full px-6 py-2 flex items-center justify-between shadow-xl border-primary-500/30 dark:border-white/10 bg-slate-100/90 dark:bg-black/20 backdrop-blur-xl">
           
           {/* Logo & Project Name */}
           <NavLink to="/" className="flex items-center gap-3 cursor-pointer group">
@@ -45,7 +45,7 @@ const Navbar = () => {
                   end={link.path === '/'}
                   className={({ isActive: linkActive }) => 
                     `px-4 py-1.5 text-[10px] font-black transition-all duration-300 relative group uppercase tracking-[0.2em]
-                    ${linkActive ? 'text-black dark:text-white' : 'text-slate-900 dark:text-gray-400 hover:text-black dark:hover:text-white'}`
+                    ${linkActive ? 'text-black font-extrabold dark:text-white' : 'text-slate-600 dark:text-gray-400 hover:text-black dark:hover:text-white'}`
                   }
                 >
                   {({ isActive: linkActive }) => (
@@ -78,11 +78,11 @@ const Navbar = () => {
           {/* Right Section: Search & Profile & Theme Toggle */}
           <div className="flex items-center gap-4">
             <div className="relative hidden sm:block group/search">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600 dark:text-gray-400 group-focus-within/search:text-primary-800 transition-colors" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-800 dark:text-gray-400 group-focus-within/search:text-primary-800 transition-colors" />
               <input 
                 type="text" 
                 placeholder="Search analysis..." 
-                className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full py-1.5 pl-10 pr-4 text-[10px] font-black focus:outline-none focus:ring-2 focus:ring-primary-500/20 text-slate-900 dark:text-gray-100 w-40 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-slate-500 dark:placeholder:text-gray-600 shadow-sm"
+                className="bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full py-1.5 pl-10 pr-4 text-[10px] font-black focus:outline-none focus:ring-2 focus:ring-primary-500/20 text-slate-900 dark:text-gray-100 w-40 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-slate-600 dark:placeholder:text-gray-600 shadow-sm"
               />
             </div>
 
