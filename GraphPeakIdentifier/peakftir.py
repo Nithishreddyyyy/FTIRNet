@@ -8,64 +8,22 @@ from utils import identify_functional_group
 
 # Load data
 
-df = pd.read_csv("FTIR_PLASTIC_c4.csv")
+df = pd.read_csv("new.csv")
 
 df.columns = df.columns.str.strip()
 
-# Extract x and y columns
+# Extract feature columns (already processed in new.csv)
 
-x_cols = [col for col in df.columns if "Data(x)" in col]
-y_cols = [col for col in df.columns if "Data(y)" in col]
+feature_cols = [col for col in df.columns if col.startswith("f_")]
 
-# Convert FTIR data
+# Use new.csv directly (no need for processing since features are already computed)
 
-processed_data = []
+new_df = df[["Sample_ID", "Polymer"] + feature_cols].copy()
 
-for _, row in df.iterrows():
-
-    sample_id = row['IDE']
-    polymer = row['Polymer']
-
-    x_vals = row[x_cols].values.astype(float)
-    y_vals = row[y_cols].values.astype(float)
-
-    mask = (x_vals >= 600) & (x_vals <= 3930)
-
-    x_filtered = x_vals[mask]
-    y_filtered = y_vals[mask]
-
-    idx = np.argsort(x_filtered)
-
-    x_filtered = x_filtered[idx]
-    y_filtered = y_filtered[idx]
-
-    x_target = np.arange(600, 3930 + 2, 2)
-
-    y_target = np.interp(x_target, x_filtered, y_filtered)
-
-    feature_dict = {}
-
-    for x, y in zip(x_target, y_target):
-
-        feature_dict[f"f_{int(x)}"] = y
-
-    new_row = {
-        "Sample_ID": sample_id,
-        "Polymer": polymer
-    }
-
-    new_row.update(feature_dict)
-
-    processed_data.append(new_row)
-
-# Create dataframe
-
-new_df = pd.DataFrame(processed_data)
-
-# Sort columns
+# Ensure columns are sorted properly
 
 cols = ["Sample_ID", "Polymer"] + sorted(
-    [c for c in new_df.columns if c.startswith("f_")],
+    feature_cols,
     key=lambda x: int(x.split('_')[1])
 )
 
@@ -73,7 +31,7 @@ new_df = new_df[cols]
 
 # Select sample
 
-new_df = new_df.iloc[[500]]
+new_df = new_df.iloc[[2]]
 
 # Prepare wavenumbers
 
