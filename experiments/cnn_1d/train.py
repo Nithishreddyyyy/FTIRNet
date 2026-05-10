@@ -100,7 +100,7 @@ plt.ylabel("Actual")
 plt.title("CNN Confusion Matrix")
 
 plt.tight_layout()
-plt.savefig("results/confusion_matrix_cnn.png")
+plt.savefig("results/confusion_matrix_cnn-29thApril.png")
 plt.close()
 
 torch.save(model.state_dict(), "models/cnn_group_split.pth")
