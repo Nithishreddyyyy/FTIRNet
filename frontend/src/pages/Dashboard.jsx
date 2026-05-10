@@ -5,8 +5,8 @@ import { LayoutDashboard, TrendingUp, ChevronDown } from 'lucide-react';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="h-[calc(100vh-5rem)] overflow-hidden pt-24 pb-6 px-6">
+      <div className="max-w-7xl mx-auto space-y-10">
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -14,7 +14,7 @@ const Dashboard = () => {
           className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b-2 border-slate-400 dark:border-white/10"
         >
           <div className="space-y-1">
-            <h1 className="text-3xl font-black tracking-tight text-black dark:text-white flex items-center gap-4">
+            <h1 className="text-2xl font-bold tracking-tight text-black dark:text-white flex items-center gap-4">
               <div className="p-3 bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 rounded-2xl shadow-xl">
                 <LayoutDashboard className="text-primary-800 dark:text-primary-500 w-7 h-7" />
               </div>

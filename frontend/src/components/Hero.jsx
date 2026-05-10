@@ -18,23 +18,23 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col gap-8"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] text-black dark:text-white">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-black dark:text-white">
             AI-Powered <br />
             <span className="text-gradient">Microplastics</span> <br />
             Detection
           </h1>
           
-          <p className="text-xl text-[#1e293b] dark:text-gray-400 max-w-xl leading-relaxed font-bold">
+          <p className="text-base md:text-lg text-[#1e293b] dark:text-gray-400 max-w-xl leading-relaxed font-medium">
             Advanced neural networks and computer vision to analyze, quantify, and map microplastic contamination with unprecedented accuracy and speed.
           </p>
           
           <div className="flex flex-wrap items-center gap-8 pt-6">
-            <button className="group relative inline-flex items-center justify-center px-12 py-5 text-sm font-black text-white transition-all duration-300 bg-black dark:bg-gradient-to-r dark:from-primary-600 dark:to-primary-500 rounded-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-4 focus:ring-primary-700 overflow-hidden uppercase tracking-[0.25em] hover:-translate-y-1.5 active:translate-y-0 shadow-2xl">
+            <button className="group relative inline-flex items-center justify-center px-10 py-4 text-sm font-bold text-white transition-all duration-300 bg-black dark:bg-gradient-to-r dark:from-primary-600 dark:to-primary-500 rounded-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-4 focus:ring-primary-700 overflow-hidden uppercase tracking-[0.15em] hover:-translate-y-1.5 active:translate-y-0 shadow-2xl">
               <span className="relative flex items-center gap-3">
-                Start Analysis <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                Start Analysis <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
               </span>
             </button>
-            <button className="inline-flex items-center justify-center px-12 py-5 text-sm font-black text-black dark:text-gray-300 transition-all duration-300 bg-white dark:bg-white/5 border-2 border-slate-400 dark:border-white/10 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/10 hover:shadow-2xl hover:text-black dark:hover:text-white focus:outline-none uppercase tracking-[0.25em] shadow-xl">
+            <button className="inline-flex items-center justify-center px-10 py-4 text-sm font-bold text-black dark:text-gray-300 transition-all duration-300 bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/10 hover:shadow-2xl hover:text-black dark:hover:text-white focus:outline-none uppercase tracking-[0.15em] shadow-xl">
               Learn More
             </button>
           </div>

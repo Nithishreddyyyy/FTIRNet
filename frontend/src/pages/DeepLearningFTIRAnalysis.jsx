@@ -112,18 +112,17 @@ const DeepLearningFTIRAnalysis = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="glass-card p-8 group relative overflow-hidden border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-white/5"
+              className="glass-card p-8 relative overflow-hidden border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-white/5"
             >
-              <div className="bg-glow opacity-0 group-hover:opacity-5 transition-opacity" />
               
-              <div className="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 dark:border-white/10 group-hover:border-primary-500/40 rounded-[2rem] p-10 transition-all duration-500 bg-slate-50/30 dark:bg-white/[0.02] shadow-inner">
-                <div className="p-6 bg-primary-600/10 rounded-full group-hover:scale-110 group-hover:bg-primary-600/20 transition-all duration-500 shadow-sm border border-slate-100 dark:border-white/5">
+              <div className="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 dark:border-white/10 rounded-[2rem] p-10 transition-all duration-500 bg-slate-50/30 dark:bg-white/[0.02] shadow-inner">
+                <div className="p-6 bg-primary-600/10 rounded-full transition-all duration-500 shadow-sm border border-slate-100 dark:border-white/5">
                   <Upload className="w-10 h-10 text-primary-800 dark:text-primary-400" />
                 </div>
                 <h3 className="mt-6 text-xl font-black text-slate-950 dark:text-white tracking-tighter uppercase">Upload FTIR Dataset</h3>
                 <p className="text-[10px] font-bold text-slate-600 mt-2 uppercase tracking-widest">Supports .csv spectral datasets</p>
                 
-                <label className="mt-10 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-black rounded-xl cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 uppercase tracking-widest shadow-md">
+                <label className="mt-10 px-8 py-3.5 bg-slate-900 hover:bg-primary-600 text-white text-[10px] font-black rounded-xl cursor-pointer transition-colors duration-300 uppercase tracking-widest shadow-md">
                    Browse CSV
                   <input type="file" className="hidden" accept=".csv" onChange={handleFileUpload} />
                 </label>
@@ -168,7 +167,7 @@ const DeepLearningFTIRAnalysis = () => {
                   <select 
                     value={selectedModel}
                     onChange={(e) => setSelectedModel(e.target.value)}
-                    className="w-full bg-white dark:bg-white/5 border-2 border-primary-500/30 dark:border-white/10 rounded-[1.5rem] px-6 py-5 text-[var(--heading-color)] appearance-none focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer transition-all font-black text-base shadow-md hover:bg-gray-50"
+                    className="w-full bg-white dark:bg-white/5 border-2 border-primary-500/30 dark:border-white/10 rounded-[1.5rem] px-6 py-5 text-[var(--heading-color)] appearance-none focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer transition-all font-black text-base shadow-md hover:bg-gray-50 dark:hover:bg-white/10"
                   >
                     {models.map(m => <option key={m} value={m} className="bg-white dark:bg-dark-bg text-gray-950 dark:text-white">{m}</option>)}
                   </select>
