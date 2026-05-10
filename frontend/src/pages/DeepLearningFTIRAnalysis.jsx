@@ -494,18 +494,15 @@ const DeepLearningFTIRAnalysis = () => {
                   <FileText className="w-10 h-10 text-primary-800 dark:text-primary-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-base font-black text-[var(--heading-color)] truncate tracking-tighter">{item.name}</p>
-                  <div className="flex items-center gap-4 mt-3">
-                    <span className="text-[10px] text-emerald-900 dark:text-emerald-400 font-black uppercase tracking-widest">{item.type}</span>
-                    <span className="text-[10px] text-gray-400 font-black">•</span>
-                    <span className="text-[10px] text-gray-600 dark:text-gray-500 font-black uppercase tracking-widest">{item.time}</span>
+                  <p className="text-base font-bold text-[var(--heading-color)] truncate tracking-tighter">{item.name}</p>
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <span className="text-[10px] text-emerald-900 dark:text-emerald-400 font-bold uppercase tracking-widest">{item.type}</span>
+                    <span className="text-[10px] text-gray-400 font-bold hidden sm:inline-block">•</span>
+                    <span className="text-[10px] text-gray-600 dark:text-gray-500 font-bold uppercase tracking-widest">{item.time}</span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-[11px] font-black text-emerald-800 dark:text-emerald-500 uppercase tracking-widest">{item.confidence}</p>
-                  <div className="w-16 h-2 bg-gray-200 dark:bg-white/10 rounded-full mt-3 overflow-hidden shadow-inner">
-                    <div className="bg-emerald-600 h-full shadow-[0_0_12px_#10b981]" style={{ width: item.confidence }} />
-                  </div>
+                <div className="text-right flex flex-col justify-center">
+                  <p className="text-sm font-black text-emerald-800 dark:text-emerald-500 uppercase tracking-widest">{item.confidence}</p>
                 </div>
               </div>
             ))}

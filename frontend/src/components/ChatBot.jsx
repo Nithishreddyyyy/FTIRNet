@@ -219,18 +219,6 @@ const ChatBot = () => {
 
       {/* MINIMIZED VIEW / FLOATING BUTTON */}
       <div className="flex items-center gap-4 group">
-        <AnimatePresence>
-          {!isOpen && (
-             <motion.div 
-               initial={{ opacity: 0, x: 20 }}
-               animate={{ opacity: 1, x: 0 }}
-               exit={{ opacity: 0, x: 20 }}
-               className="bg-white dark:bg-white/5 border border-primary-500/20 dark:border-white/10 px-4 py-2 rounded-full hidden md:block shadow-xl dark:shadow-none"
-             >
-                <p className="text-[10px] font-black text-primary-600 dark:text-primary-400 uppercase tracking-[0.2em]">Assistant Online</p>
-             </motion.div>
-          )}
-        </AnimatePresence>
 
         <motion.button
           onClick={() => {

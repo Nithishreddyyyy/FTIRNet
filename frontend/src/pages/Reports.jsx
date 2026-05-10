@@ -1,6 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Search, Clock, Plus, Filter, Download } from 'lucide-react';
+import { FileText, Search, Clock, Plus, Filter, Download, Database, Eye, Trash2 } from 'lucide-react';
+
+const mockReports = [
+  { id: 'FTIR-001', name: 'Marine Sediments Sample A', polymer: 'Polyethylene (PE)', confidence: 98.4, date: '2026-05-10', status: 'Completed' },
+  { id: 'FTIR-002', name: 'River Surface Water B', polymer: 'Polypropylene (PP)', confidence: 92.1, date: '2026-05-09', status: 'Completed' },
+  { id: 'FTIR-003', name: 'Deep Ocean Core C', polymer: 'Polystyrene (PS)', confidence: 88.5, date: '2026-05-08', status: 'Processing' },
+  { id: 'FTIR-004', name: 'Coastal Beach Sand D', polymer: 'PET', confidence: 96.2, date: '2026-05-07', status: 'Completed' },
+  { id: 'FTIR-005', name: 'Urban Runoff Sample E', polymer: 'PVC', confidence: 84.7, date: '2026-05-06', status: 'Completed' },
+];
 
 const Reports = () => {
   return (
@@ -42,7 +50,7 @@ const Reports = () => {
             <input 
               type="text" 
               placeholder="Search reports by sample ID, polymer type, or location..." 
-              className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-3 pl-14 pr-6 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all placeholder:text-slate-400 shadow-sm"
+              className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-3 pl-14 pr-6 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all placeholder:text-slate-400 shadow-sm"
             />
           </div>
           <div className="flex items-center gap-6 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] whitespace-nowrap px-6 border-l-2 border-slate-100 dark:border-white/10 h-10">
@@ -58,9 +66,9 @@ const Reports = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="glass-card p-16 flex flex-col items-center justify-center text-center space-y-8 min-h-[400px] relative overflow-hidden border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-white/5"
+          className="glass-card p-12 flex flex-col items-center justify-center text-center space-y-6 min-h-[350px] relative overflow-hidden border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-white/5"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-100/50 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-500/5 dark:from-white/5 to-transparent pointer-events-none" />
           
           <div className="relative">
              <div className="w-24 h-24 bg-white dark:bg-white/5 rounded-[2rem] flex items-center justify-center border border-slate-200 dark:border-white/10 rotate-6 shadow-md relative z-10 group">
@@ -69,8 +77,8 @@ const Reports = () => {
           </div>
 
           <div className="space-y-4 max-w-sm relative z-10">
-            <h2 className="text-2xl font-black text-slate-950 dark:text-white tracking-tighter leading-tight uppercase">No reports <br />generated yet</h2>
-            <p className="text-slate-600 dark:text-gray-400 text-xs font-bold leading-relaxed">Once you complete an analysis, your detailed scientific reports will appear here.</p>
+            <h2 className="text-xl font-bold text-slate-950 dark:text-white tracking-tighter leading-tight uppercase">No reports <br />generated yet</h2>
+            <p className="text-slate-600 dark:text-gray-400 text-xs font-medium leading-relaxed">Once you complete an analysis, your detailed scientific reports will appear here.</p>
           </div>
 
           <button className="relative z-10 px-14 py-5 bg-white dark:bg-white/5 border-2 border-primary-500/30 dark:border-white/10 rounded-2xl text-gray-900 dark:text-white text-[11px] font-black shadow-2xl hover:shadow-[0_20px_40px_rgba(3,105,161,0.3)] hover:bg-gray-50 dark:hover:bg-white/10 transition-all hover:-translate-y-1.5 active:translate-y-0 uppercase tracking-[0.25em]">
@@ -78,26 +86,87 @@ const Reports = () => {
           </button>
         </motion.div>
 
-        {/* History/Quick Links Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-16">
-           {[
-              { label: 'Archived Reports', icon: Clock, count: 0 },
-              { label: 'Shared with Team', icon: Plus, count: 0 },
-              { label: 'Drafted Scans', icon: Search, count: 0 }
-           ].map((item, i) => (
-              <div key={i} className="glass-card p-10 flex items-center justify-between bg-white dark:bg-white/5 hover:shadow-2xl hover:border-primary-500/50 hover:-translate-y-2 transition-all group cursor-pointer border-primary-500/30 dark:border-white/10 shadow-2xl">
-                 <div className="flex items-center gap-8">
-                    <div className="p-5 bg-primary-700/10 dark:bg-white/5 rounded-2xl group-hover:bg-primary-700/20 transition-all shadow-inner border border-primary-500/10">
-                       <item.icon className="w-8 h-8 text-primary-800 dark:text-gray-500 group-hover:scale-110 transition-transform duration-500" />
-                    </div>
-                    <span className="text-base font-black text-gray-900 dark:text-gray-300 group-hover:text-primary-800 dark:group-hover:text-primary-400 transition-colors uppercase tracking-[0.2em]">{item.label}</span>
-                 </div>
-                 <div className="w-12 h-12 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center border-2 border-primary-500/30 dark:border-white/10 shadow-xl">
-                    <span className="text-xs font-black text-gray-600 dark:text-gray-600">{item.count}</span>
-                 </div>
-              </div>
-           ))}
-        </div>
+        {/* Generated Reports Library */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="space-y-6 pb-16"
+        >
+          <div className="flex items-center gap-4 px-2">
+            <div className="p-3 bg-primary-700/10 dark:bg-white/5 rounded-2xl border border-primary-500/20 dark:border-white/10 shadow-sm">
+              <Database className="w-6 h-6 text-primary-800 dark:text-primary-400" />
+            </div>
+            <h2 className="text-2xl font-bold text-[var(--heading-color)] tracking-tighter">Generated Reports Library</h2>
+          </div>
+
+          <div className="glass-card overflow-hidden border-primary-500/30 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5 rounded-[2rem]">
+            <div className="overflow-x-auto scrollbar-hide">
+              <table className="w-full text-left border-collapse min-w-[800px]">
+                <thead>
+                  <tr className="border-b border-primary-500/10 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02]">
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Report Name</th>
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Polymer Type</th>
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Confidence</th>
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Date</th>
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Status</th>
+                    <th className="p-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-primary-500/5 dark:divide-white/5">
+                  {mockReports.map((report, i) => (
+                    <tr key={i} className="hover:bg-primary-500/5 dark:hover:bg-white/[0.02] transition-colors group">
+                      <td className="p-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-white dark:bg-white/5 rounded-xl border border-primary-500/10 dark:border-white/10 shadow-sm group-hover:scale-110 transition-transform">
+                            <FileText className="w-5 h-5 text-primary-600 dark:text-gray-400" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold text-gray-900 dark:text-gray-200">{report.name}</p>
+                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">ID: {report.id}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-6">
+                        <span className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-primary-600/10 dark:bg-primary-500/10 text-primary-800 dark:text-primary-400 border border-primary-500/20 dark:border-primary-500/30 whitespace-nowrap">
+                          {report.polymer}
+                        </span>
+                      </td>
+                      <td className="p-6">
+                        <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400">{report.confidence}%</span>
+                      </td>
+                      <td className="p-6">
+                        <span className="text-xs font-bold text-gray-600 dark:text-gray-400">{report.date}</span>
+                      </td>
+                      <td className="p-6">
+                        <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border whitespace-nowrap ${
+                          report.status === 'Completed' 
+                          ? 'bg-emerald-600/10 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border-emerald-500/20 dark:border-emerald-500/30'
+                          : 'bg-amber-500/10 dark:bg-amber-500/10 text-amber-800 dark:text-amber-400 border-amber-500/20 dark:border-amber-500/30'
+                        }`}>
+                          {report.status}
+                        </span>
+                      </td>
+                      <td className="p-6">
+                        <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button className="p-2 hover:bg-white dark:hover:bg-white/10 rounded-lg text-primary-600 dark:text-primary-400 transition-colors shadow-sm border border-transparent hover:border-primary-500/20 dark:hover:border-white/10" title="View Report">
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button className="p-2 hover:bg-white dark:hover:bg-white/10 rounded-lg text-gray-600 dark:text-gray-400 transition-colors shadow-sm border border-transparent hover:border-gray-200 dark:hover:border-white/10" title="Download PDF">
+                            <Download className="w-4 h-4" />
+                          </button>
+                          <button className="p-2 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg text-red-600 dark:text-red-400 transition-colors shadow-sm border border-transparent hover:border-red-500/20 dark:hover:border-red-500/30" title="Delete">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

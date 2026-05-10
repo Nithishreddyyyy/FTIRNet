@@ -5,7 +5,7 @@ import { LayoutDashboard, TrendingUp, ChevronDown } from 'lucide-react';
 
 const Dashboard = () => {
   return (
-    <div className="h-[calc(100vh-5rem)] overflow-hidden pt-24 pb-6 px-6">
+    <div className="pt-24 pb-6 px-6">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Header Section */}
         <motion.div 
