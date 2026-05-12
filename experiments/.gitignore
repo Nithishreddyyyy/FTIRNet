@@ -4,3 +4,6 @@ cnn_1d_1stMay/
 cnn_1d_2ndMay/
 cnn_1d_2ndMay_FT/
 cnn_1d_3rdMay_Trans/
+Model/
+random_forest
+random_forest/results/confusion_matrix.png
