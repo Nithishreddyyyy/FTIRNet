@@ -1,0 +1,64 @@
+[
+  {
+    "title": "Analysis: Unknown",
+    "sample_id": "FTIR-2583",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.9395,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.8784,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.7759,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.8655,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "finetuned_model",
+    "summary": "Unknown detected with 0% confidence.",
+    "status": "Completed",
+    "id": "4791c6aa-80d4-489f-9041-83bedd8f7287",
+    "created_at": "2026-05-12T18:13:09.335152"
+  },
+  {
+    "title": "Analysis: Unknown",
+    "sample_id": "FTIR-86",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.4012,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.4097,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.5035,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.6709,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "base_model",
+    "summary": "Unknown detected with 0% confidence.",
+    "status": "Completed",
+    "id": "00e9c211-76b8-4cd5-ac0c-8ffc37cd6eaa",
+    "created_at": "2026-05-12T18:12:05.937775"
+  }
+]

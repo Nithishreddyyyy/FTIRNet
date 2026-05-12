@@ -1,1 +1,0 @@
-# SpectraVision Backend Package
