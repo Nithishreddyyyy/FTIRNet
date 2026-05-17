@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger("spectravision")
-logger.setLevel(logging.I   NFO)
+logger.setLevel(logging.INFO)
 
 logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
 logging.getLogger("multipart").setLevel(logging.WARNING)
