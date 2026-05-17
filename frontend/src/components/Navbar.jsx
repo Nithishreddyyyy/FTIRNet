@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'FTIR Analysis', path: '/ftir-analysis' },
+    { name: 'Peak Identifier', path: '/graph-peak' },
     { name: 'Reports', path: '/reports' },
     { name: 'About Us', path: '/about' },
   ];
