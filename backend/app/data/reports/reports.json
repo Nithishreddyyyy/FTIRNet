@@ -1,0 +1,222 @@
+[
+  {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-8028",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.9395
+    },
+    "model_used": "finetuned_model",
+    "summary": "HDPE detected with 93.95% confidence.",
+    "status": "Completed",
+    "id": "09a6da78-ddd5-4c07-a2ab-8cf67f8422d3",
+    "created_at": "2026-05-13T13:01:55.753115"
+  },
+  {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-4941",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.4011
+    },
+    "model_used": "base_model",
+    "summary": "HDPE detected with 40.11% confidence.",
+    "status": "Completed",
+    "id": "eb982342-1f86-496f-a2f3-a04273d43f97",
+    "created_at": "2026-05-13T13:01:45.844884"
+  },
+  {
+    "title": "Analysis: HDPE (4 samples)",
+    "sample_id": "HDPE004",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.9395,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.8784,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.7759,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.8655,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "finetuned_model",
+    "summary": "4 samples analyzed. HDPE detected with 93.95% confidence.",
+    "status": "Completed",
+    "id": "eb6ad66a-4739-4b1a-a3b9-3907f53e24fb",
+    "created_at": "2026-05-13T02:52:38.820287"
+  },
+  {
+    "title": "Analysis: HDPE (4 samples)",
+    "sample_id": "HDPE004",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.4012,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.4097,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.5035,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.6709,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "base_model",
+    "summary": "4 samples analyzed. HDPE detected with 40.12% confidence.",
+    "status": "Completed",
+    "id": "de27bbe3-2033-483b-b93c-1ee836318447",
+    "created_at": "2026-05-13T02:52:31.601761"
+  },
+  {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-4272",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.9395
+    },
+    "model_used": "finetuned_model",
+    "summary": "HDPE detected with 94.0% confidence.",
+    "status": "Completed",
+    "id": "c9f73a64-3d05-4d2a-8181-c0e1dda7c82b",
+    "created_at": "2026-05-13T02:48:49.178544"
+  },
+  {
+    "title": "Analysis: Unknown",
+    "sample_id": "FTIR-1122",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.9395,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.8784,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.7759,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.8655,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "finetuned_model",
+    "summary": "Unknown detected with 0% confidence.",
+    "status": "Completed",
+    "id": "59728cd9-4bed-45e1-9dd4-6035814f44d8",
+    "created_at": "2026-05-13T02:46:44.960292"
+  },
+  {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-2281",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.9395
+    },
+    "model_used": "finetuned_model",
+    "summary": "HDPE detected with 94.0% confidence.",
+    "status": "Completed",
+    "id": "bc2d20ee-8682-4878-aa15-15bea7c2d624",
+    "created_at": "2026-05-13T02:45:41.957263"
+  },
+  {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-2109",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.4011
+    },
+    "model_used": "base_model",
+    "summary": "HDPE detected with 40.1% confidence.",
+    "status": "Completed",
+    "id": "a6107d4a-6563-4f71-a3f4-4150c4ff5e6c",
+    "created_at": "2026-05-13T02:45:32.566035"
+  },
+  {
+    "title": "Analysis: Unknown",
+    "sample_id": "FTIR-2583",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.9395,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.8784,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.7759,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.8655,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "finetuned_model",
+    "summary": "Unknown detected with 0% confidence.",
+    "status": "Completed",
+    "id": "4791c6aa-80d4-489f-9041-83bedd8f7287",
+    "created_at": "2026-05-12T18:13:09.335152"
+  },
+  {
+    "title": "Analysis: Unknown",
+    "sample_id": "FTIR-86",
+    "predictions": [
+      {
+        "class": "HDPE",
+        "confidence": 0.4012,
+        "sample_id": "HDPE004"
+      },
+      {
+        "class": "PET",
+        "confidence": 0.4097,
+        "sample_id": "PET003"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.5035,
+        "sample_id": "PP004"
+      },
+      {
+        "class": "PP",
+        "confidence": 0.6709,
+        "sample_id": "PP006"
+      }
+    ],
+    "model_used": "base_model",
+    "summary": "Unknown detected with 0% confidence.",
+    "status": "Completed",
+    "id": "00e9c211-76b8-4cd5-ac0c-8ffc37cd6eaa",
+    "created_at": "2026-05-12T18:12:05.937775"
+  }
+]

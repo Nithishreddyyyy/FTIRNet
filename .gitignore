@@ -10,3 +10,4 @@ preprocessing/
 data/processed
 plot*.py
 plot1.py
+CNN/

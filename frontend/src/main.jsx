@@ -5,12 +5,24 @@ import './index.css'
 import App from './App.jsx'
 
 import { ThemeProvider } from './context/ThemeContext'
+import { PredictionProvider } from './context/PredictionContext'
+import { ChatbotProvider } from './context/ChatbotContext'
+import { DashboardProvider } from './context/DashboardContext'
+import { ReportsProvider } from './context/ReportsContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <App />
+        <PredictionProvider>
+          <ChatbotProvider>
+            <DashboardProvider>
+              <ReportsProvider>
+                <App />
+              </ReportsProvider>
+            </DashboardProvider>
+          </ChatbotProvider>
+        </PredictionProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
