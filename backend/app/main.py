@@ -65,6 +65,7 @@ from app.routes.models import router as models_router
 from app.routes.reports import router as reports_router
 from app.routes.chatbot import router as chatbot_router
 from app.routes.upload import router as upload_router
+from app.routes.graph_peak import router as graph_peak_router
 
 all_routers = [
     (prediction_router, "/prediction"),
@@ -74,6 +75,7 @@ all_routers = [
     (reports_router, "/reports"),
     (chatbot_router, "/chatbot"),
     (upload_router, "/upload"),
+    (graph_peak_router, "/graph-peak"),
 ]
 
 for router, prefix in all_routers:
@@ -100,6 +102,7 @@ async def root():
             "reports": f"{settings.API_PREFIX}/reports",
             "chatbot": f"{settings.API_PREFIX}/chatbot/chat",
             "upload": f"{settings.API_PREFIX}/upload",
+            "graph_peak": f"{settings.API_PREFIX}/graph-peak/analyze",
         },
     }
 

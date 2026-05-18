@@ -31,7 +31,7 @@ new_df = new_df[cols]
 
 # Select sample
 
-new_df = new_df.iloc[[2]]
+new_df = new_df.iloc[[0]]
 
 # Prepare wavenumbers
 
