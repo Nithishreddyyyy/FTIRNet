@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import AboutUs from './pages/AboutUs';
 import GraphPeakIdentifier from './pages/GraphPeakIdentifier';
+import MolecularStructure from './pages/molecular_structure';
 import ChatBot from './components/ChatBot';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/ftir-analysis" element={<DeepLearningFTIRAnalysis />} />
           <Route path="/graph-peak" element={<GraphPeakIdentifier />} />
+          <Route path="/molecular-structure" element={<MolecularStructure />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
