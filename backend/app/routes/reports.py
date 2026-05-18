@@ -397,61 +397,59 @@ def generate_pdf_report(report_data: dict) -> str:
     elements.append(ftir_heading)
 
     elements.append(Spacer(1, 0.15 * inch))
-
-
-
+    
+    
     polymer_ftir = {
 
-        "PET": [
+    "PET": [
 
-            "1715 cm⁻¹ → Ester carbonyl stretching",
+        "1715 cm<super>-1</super> → Ester carbonyl stretching",
 
-            "1240 cm⁻¹ → C-O stretching"
+        "1240 cm<super>-1</super> → C-O stretching"
 
-        ],
+    ],
 
-        "PP": [
+    "PP": [
 
-            "1455 cm⁻¹ → CH bending",
+        "1455 cm<super>-1</super> → CH bending",
 
-            "1375 cm⁻¹ → CH₃ symmetric deformation"
+        "1375 cm<super>-1</super> → CH<sub>3</sub> symmetric deformation"
 
-        ],
+    ],
 
-        "PS": [
+    "PS": [
 
-            "1600 cm⁻¹ → Aromatic C=C stretching",
+        "1600 cm<super>-1</super> → Aromatic C=C stretching",
 
-            "1492 cm⁻¹ → Benzene ring vibration"
+        "1492 cm<super>-1</super> → Benzene ring vibration"
 
-        ],
+    ],
 
-        "HDPE": [
+    "HDPE": [
 
-            "2915 cm⁻¹ → CH₂ asymmetric stretching",
+        "2915 cm<super>-1</super> → CH<sub>2</sub> asymmetric stretching",
 
-            "1470 cm⁻¹ → CH₂ bending"
+        "1470 cm<super>-1</super> → CH<sub>2</sub> bending"
 
-        ],
+    ],
 
-        "LDPE": [
+    "LDPE": [
 
-            "2920 cm⁻¹ → CH₂ stretching",
+        "2920 cm<super>-1</super> → CH<sub>2</sub> stretching",
 
-            "1465 cm⁻¹ → CH₂ deformation"
+        "1465 cm<super>-1</super> → CH<sub>2</sub> deformation"
 
-        ],
+    ],
 
-        "PVC": [
+    "PVC": [
 
-            "600 cm⁻¹ → C-Cl stretching",
+        "600 cm<super>-1</super> → C-Cl stretching",
 
-            "1250 cm⁻¹ → CH bending"
+        "1250 cm<super>-1</super> → CH bending"
 
-        ]
+    ]
 
-    }
-
+}
 
 
     ftir_points = polymer_ftir.get(polymer, [])
