@@ -1,5 +1,18 @@
 [
   {
+    "title": "Analysis: HDPE",
+    "sample_id": "FTIR-5802",
+    "predictions": {
+      "class": "HDPE",
+      "confidence": 0.9395
+    },
+    "model_used": "finetuned_model",
+    "summary": "HDPE detected with 93.95% confidence.",
+    "status": "Completed",
+    "id": "670b6181-3a7e-4042-b2f1-1584afb35139",
+    "created_at": "2026-05-20T02:15:30.334803"
+  },
+  {
     "title": "Graph Peak Analysis: HDPEFTIR001 (HDPE)",
     "sample_id": "HDPEFTIR001",
     "predictions": {
