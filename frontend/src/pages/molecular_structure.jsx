@@ -369,8 +369,8 @@ export default function PolymerVisualizer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-8 items-stretch">
-          <div className="h-full flex flex-col justify-between gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-10 items-start">
+          <div className="space-y-8">
             <section className="glass-card p-8 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
               <div className="space-y-6">
                 <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.3em] px-2">

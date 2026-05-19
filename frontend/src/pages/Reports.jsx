@@ -128,8 +128,8 @@ const Reports = () => {
               onClick={() => setReportType(type)}
               className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all shadow-md border ${
                 reportType === type
-                  ? 'bg-primary-700 text-white border-primary-600 shadow-xl scale-105'
-                  : 'bg-white dark:bg-white/5 text-slate-600 dark:text-gray-400 border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/10'
+                  ? 'bg-primary-700 text-white border-primary-700 shadow-xl scale-105'
+                  : 'bg-white dark:bg-white/5 text-slate-700 dark:text-gray-400 border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/10'
               }`}
             >
               {type}
