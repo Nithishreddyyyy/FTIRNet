@@ -353,14 +353,14 @@ export default function PolymerVisualizer() {
 
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6">
-      <div className="max-w-7xl mx-auto space-y-10">
+    <div className="min-h-screen pt-24 pb-16 px-6">
+      <div className="max-w-7xl mx-auto space-y-8">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="p-4 bg-primary-700/10 dark:bg-primary-500/10 rounded-3xl border border-primary-500/20 dark:border-white/10 shadow-lg">
               <Atom className="w-7 h-7 text-primary-600 dark:text-primary-300" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-[var(--heading-color)]">
+            <h1 className="text-3xl font-black tracking-tight text-[var(--heading-color)]">
               <span className="text-gradient">3D Polymer Visualizer</span>
             </h1>
           </div>
@@ -369,17 +369,17 @@ export default function PolymerVisualizer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-10">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-8 items-stretch">
+          <div className="h-full flex flex-col justify-between gap-8">
             <section className="glass-card p-8 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
               <div className="space-y-6">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">
+                <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.3em] px-2">
                   Select Polymer
                 </label>
                 <select
                   value={selectedPolymer}
                   onChange={(e) => setSelectedPolymer(e.target.value)}
-                  className="mt-4 w-full bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-[1.5rem] px-5 py-4 text-[var(--heading-color)] font-black focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer shadow-md"
+                  className="mt-4 w-full bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-[1.5rem] px-5 py-4 text-[var(--heading-color)] font-black text-base focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer shadow-md"
                 >
                   <option value="pp.glb">Polypropylene (PP)</option>
                   <option value="ps.glb">Polystyrene (PS)</option>
@@ -393,14 +393,14 @@ export default function PolymerVisualizer() {
                   <button
                     type="button"
                     onClick={handleFullscreen}
-                    className="flex-1 px-6 py-4 bg-primary-700 text-white rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-primary-600 hover:-translate-y-1.5"
+                    className="flex-1 px-6 py-4 bg-primary-600 text-white rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-primary-500 hover:-translate-y-1.5 text-[10px]"
                   >
                     Full Screen
                   </button>
                   <button
                     type="button"
                     onClick={highlightFunctionalGroup}
-                    className="flex-1 px-6 py-4 bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 text-[var(--heading-color)] rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:bg-slate-50 dark:hover:bg-white/10"
+                    className="flex-1 px-6 py-4 bg-primary-600 text-white rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-primary-500 hover:-translate-y-1.5 text-[10px]"
                   >
                     Highlight Functional Group
                   </button>
@@ -411,45 +411,45 @@ export default function PolymerVisualizer() {
             <section className="glass-card p-8 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
               <div className="space-y-6">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">
+                  <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.3em] px-2 block mb-3">
                     Current Polymer
-                  </p>
-                  <h2 className="mt-3 text-2xl font-black text-[var(--heading-color)] tracking-tight">
+                  </label>
+                  <p className="text-base font-black text-[var(--heading-color)] tracking-tight px-2">
                     {info.name}
-                  </h2>
+                  </p>
                 </div>
                 <div className="space-y-4 text-gray-700 dark:text-gray-300">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
                       Chemical Formula
                     </p>
-                    <p className="text-[15px] font-semibold">{info.formula}</p>
+                    <p className="text-sm font-semibold">{info.formula}</p>
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
                       Density
                     </p>
-                    <p className="text-[15px] font-semibold">{info.density}</p>
+                    <p className="text-sm font-semibold">{info.density}</p>
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
                       Functional Group
                     </p>
-                    <p className="text-[15px] font-semibold">{info.functionalGroup}</p>
+                    <p className="text-sm font-semibold">{info.functionalGroup}</p>
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
                       Important FTIR Peaks
                     </p>
-                    <p className="text-[15px] font-semibold">{info.ftir}</p>
+                    <p className="text-sm font-semibold">{info.ftir}</p>
                   </div>
                 </div>
               </div>
             </section>
           </div>
 
-          <section className="glass-card overflow-hidden border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
-            <div className="relative h-[520px]">
+          <section className="glass-card h-full overflow-hidden border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
+            <div className="relative h-full min-h-[680px]">
               <model-viewer
                 ref={viewerRef}
                 src={`models/${selectedPolymer}`}
