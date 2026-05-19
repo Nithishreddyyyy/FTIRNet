@@ -364,8 +364,8 @@ export default function PolymerVisualizer() {
               <span className="text-gradient">3D Polymer Visualizer</span>
             </h1>
           </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 font-bold uppercase tracking-[0.18em] max-w-2xl">
-            Explore common polymer structures with an interactive 3D viewer, functional group highlights, and key FTIR signatures.
+          <p className="text-sm text-slate-700 dark:text-gray-400 mt-4 font-bold max-w-lg leading-relaxed uppercase tracking-wider">
+            Interactive 3D Structures & Functional Group Highlights
           </p>
         </div>
 
@@ -393,14 +393,14 @@ export default function PolymerVisualizer() {
                   <button
                     type="button"
                     onClick={handleFullscreen}
-                    className="flex-1 px-6 py-4 bg-primary-600 text-white rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-primary-500 hover:-translate-y-1.5 text-[10px]"
+                    className="flex-1 flex items-center justify-center text-center text-[10px] leading-tight px-6 py-3 bg-white dark:bg-white/5 hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-600 dark:hover:text-white dark:hover:border-primary-600 border-2 border-primary-500/30 dark:border-white/10 text-gray-900 dark:text-gray-300 rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:-translate-y-1.5 active:translate-y-0"
                   >
                     Full Screen
                   </button>
                   <button
                     type="button"
                     onClick={highlightFunctionalGroup}
-                    className="flex-1 px-6 py-4 bg-primary-600 text-white rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-primary-500 hover:-translate-y-1.5 text-[10px]"
+                    className="flex-1 flex items-center justify-center text-center text-[10px] leading-tight px-6 py-3 bg-white dark:bg-white/5 hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-600 dark:hover:text-white dark:hover:border-primary-600 border-2 border-primary-500/30 dark:border-white/10 text-gray-900 dark:text-gray-300 rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:-translate-y-1.5 active:translate-y-0"
                   >
                     Highlight Functional Group
                   </button>

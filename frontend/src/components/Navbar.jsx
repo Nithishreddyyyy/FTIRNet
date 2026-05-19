@@ -1,5 +1,5 @@
 import React from 'react';
-import { Microscope, Search, User, Sun, Moon } from 'lucide-react';
+import { Microscope, Search, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -38,7 +38,7 @@ const Navbar = () => {
           </NavLink>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex flex-1 justify-center items-center gap-1">
             {navLinks.map((link) => {
               return (
                 <NavLink 
@@ -77,18 +77,8 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Right Section: Search & Profile & Theme Toggle */}
+          {/* Right Section: Theme Toggle */}
           <div className="flex items-center gap-4">
-            <div className="relative hidden sm:block group/search">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-800 dark:text-gray-400 group-focus-within/search:text-primary-800 transition-colors" />
-              <input 
-                type="text" 
-                placeholder="Search analysis..." 
-                className="bg-slate-50 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full py-1.5 pl-10 pr-4 text-[10px] font-black focus:outline-none focus:ring-2 focus:ring-primary-500/20 text-slate-900 dark:text-gray-100 w-40 lg:w-48 transition-all focus:w-48 lg:focus:w-64 placeholder:text-slate-600 dark:placeholder:text-gray-600 shadow-sm"
-              />
-            </div>
-
-            {/* Theme Toggle Button */}
             <button 
               onClick={toggleTheme}
               className="p-2 bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-full transition-all relative group overflow-hidden shadow-sm"
@@ -109,10 +99,6 @@ const Navbar = () => {
                   )}
                 </motion.div>
               </AnimatePresence>
-            </button>
-
-            <button className="p-2 bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-full transition-all relative group shadow-sm">
-              <User className="w-4 h-4 text-slate-600 dark:text-gray-300 relative z-10" />
             </button>
           </div>
 

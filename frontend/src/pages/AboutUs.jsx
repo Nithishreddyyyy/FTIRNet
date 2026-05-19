@@ -14,28 +14,36 @@ import {
   Search
 } from 'lucide-react';
 
+const PersonName = ({ parts, className }) => (
+  <h3 className={`${className} inline-flex flex-wrap items-baseline justify-center gap-x-2`}>
+    {parts.map((part, index) => (
+      <span key={`${part}-${index}`}>{part}</span>
+    ))}
+  </h3>
+);
+
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: 'Member 1',
+      nameParts: ['Nithish', 'Reddy'],
       role: 'Frontend Developer',
       desc: 'Crafting futuristic user interfaces and seamless digital experiences.',
       icon: Layers
     },
     {
-      name: 'Member 2',
+      nameParts: ['Anushree'],
       role: 'Backend Developer',
       desc: 'Architecting robust server-side logic and database infrastructures.',
       icon: Activity
     },
     {
-      name: 'Member 3',
+      nameParts: ['Natasha', 'Brito'],
       role: 'Deep Learning Engineer',
       desc: 'Developing neural networks for advanced spectral pattern recognition.',
       icon: Cpu
     },
     {
-      name: 'Member 4',
+      nameParts: ['Ribhav', 'Pathak'],
       role: 'Data Processing & Research',
       desc: 'Expertise in FTIR spectral datasets and environmental impact analysis.',
       icon: FileText
@@ -44,14 +52,14 @@ const AboutUs = () => {
 
   const guides = [
     {
-      name: 'Guide 1',
+      nameParts: ['Dr', 'Yogish', 'H', 'K'],
       designation: 'Project Supervisor / Professor',
-      desc: 'Providing strategic direction and academic oversight for the research project.'
+      desc: 'Provides strategic direction and academic oversight, guiding the research vision and milestones of the project.'
     },
     {
-      name: 'Guide 2',
+      nameParts: ['Idhaya', 'Kumar'],
       designation: 'Technical Mentor',
-      desc: 'Guiding the implementation of advanced AI algorithms and system architecture.'
+      desc: 'Mentors the team on AI model development, FTIR integration, and the overall system architecture.'
     }
   ];
 
@@ -90,15 +98,15 @@ const AboutUs = () => {
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-[var(--heading-color)] tracking-tighter leading-tight">Redefining Environmental Analysis with Deep Learning</h2>
               <p className="text-[var(--text-secondary)] leading-relaxed font-medium text-base">
-                Microplastics AI was born from the need for faster, more accurate detection of microscopic pollutants. By combining FTIR spectral analysis with state-of-the-art neural networks, we aim to provide researchers and policymakers with the data they need to make real environmental changes.
+                Microplastics AI was born from the need for faster, more accurate detection of microscopic pollutants. By combining FTIR spectral analysis with neural networks, we aim to provide researchers and policymakers with the data they need to make real environmental changes.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-8">
                {[
-                 { label: 'Technology', val: 'DL & FTIR' },
+                 { label: 'Technology', val: 'FTIR' },
                  { label: 'Impact', val: 'Global' },
-                 { label: 'Approach', val: 'Scientific' },
-                 { label: 'Vision', val: 'AI-First' }
+                 { label: 'Approach', val: 'Spectral' },
+                 { label: 'Vision', val: 'Automated' }
                ].map((stat, i) => (
                  <div key={i} className="p-10 bg-white dark:bg-white/5 border border-primary-500/30 dark:border-white/10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 group">
                     <span className="text-[10px] uppercase font-black text-gray-500 mb-3 block tracking-[0.25em] group-hover:text-primary-800 transition-colors">{stat.label}</span>
@@ -123,7 +131,10 @@ const AboutUs = () => {
                   <member.icon className="w-14 h-14 text-primary-800 dark:text-primary-400 relative z-10" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-[var(--heading-color)] tracking-tighter leading-tight">{member.name}</h3>
+                  <PersonName
+                    parts={member.nameParts}
+                    className="text-xl font-bold text-[var(--heading-color)] tracking-normal leading-snug"
+                  />
                   <p className="text-[11px] font-bold text-primary-800 dark:text-primary-400 uppercase tracking-[0.3em]">{member.role}</p>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-500 font-medium italic leading-relaxed">"{member.desc}"</p>
@@ -144,7 +155,10 @@ const AboutUs = () => {
                   <UserCheck className="w-14 h-14 text-primary-800 dark:text-primary-400" />
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-[var(--heading-color)] tracking-tighter leading-tight">{guide.name}</h3>
+                  <PersonName
+                    parts={guide.nameParts}
+                    className="text-2xl font-bold text-[var(--heading-color)] tracking-normal leading-snug"
+                  />
                   <p className="text-[11px] font-bold text-accent-800 dark:text-accent-400 uppercase tracking-[0.3em]">{guide.designation}</p>
                   <p className="text-base text-gray-800 dark:text-gray-500 font-medium leading-relaxed">{guide.desc}</p>
                 </div>

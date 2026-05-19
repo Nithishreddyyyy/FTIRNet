@@ -59,7 +59,7 @@ const Dashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b-2 border-slate-400 dark:border-white/10"
+          className="pb-8 border-b-2 border-slate-400 dark:border-white/10"
         >
           <div className="space-y-1">
             <h1 className="text-2xl font-black tracking-tight text-black dark:text-white flex items-center gap-4">
@@ -71,14 +71,6 @@ const Dashboard = () => {
             <p className="text-sm text-[#1e293b] dark:text-gray-400 mt-4 font-bold max-w-lg leading-relaxed">
               Real-time monitoring of microplastic detection and classification metrics from global analysis streams.
             </p>
-          </div>
-          <div className="flex items-center gap-4 text-xs font-black text-slate-800 dark:text-gray-400 bg-white dark:bg-white/5 px-8 py-3 rounded-full border-2 border-slate-300 dark:border-white/10 shadow-xl uppercase tracking-[0.25em]">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
-              className="w-4 h-4 rounded-full border-2 border-emerald-600 border-t-transparent"
-            />
-            SYSTEM STATUS: <span className="text-emerald-700 dark:text-emerald-400">LIVE</span>
           </div>
         </motion.div>
 
