@@ -1,8 +1,6 @@
-# app/services/pdf_service.py
-
 """
 Professional PDF Report Generator
-=================================
+==================================
 Generates scientific-style PDF reports for
 polymer / microplastic analysis.
 """
@@ -30,109 +28,54 @@ REPORT_DIR = Path("reports/generated")
 REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-
 # =========================================================
 # POLYMER REFERENCES
 # =========================================================
 
 POLYMER_REFERENCES = {
-
     "PET": [
-
         "Awaja, F. et al. Recycling of PET. European Polymer Journal.",
-
         "Shukla, S.R. PET waste management by recycling.",
-
         "Jambeck, J. Plastic waste inputs from land into ocean.",
-
         "Andrady, A. Microplastics in marine environments.",
-
-        "Singh, N. FTIR analysis of PET microplastics."
-
+        "Singh, N. FTIR analysis of PET microplastics.",
     ],
-
-
-
     "PP": [
-
         "Karian, H. Handbook of Polypropylene.",
-
         "Maier, C. Polypropylene: The Definitive User's Guide.",
-
         "Andrady, A. Plastics and environmental sustainability.",
-
         "Fotopoulou, K. Microplastics in marine systems.",
-
-        "Zhang, J. FTIR identification of polypropylene."
-
+        "Zhang, J. FTIR identification of polypropylene.",
     ],
-
-
-
     "PS": [
-
         "Lithner, D. Environmental hazards of polystyrene.",
-
         "Andrady, A. Microplastics research trends.",
-
         "Rochman, C. Plastic pollution studies.",
-
         "Smith, B. Infrared spectral interpretation.",
-
-        "Cole, M. Microplastics as contaminants."
-
+        "Cole, M. Microplastics as contaminants.",
     ],
-
-
-
     "HDPE": [
-
         "Harper, C. Handbook of Plastics Technologies.",
-
         "Thompson, R. Plastic debris in oceans.",
-
         "Barnes, D. Accumulation of plastics.",
-
         "Andrady, A. Environmental impacts of plastics.",
-
-        "Jung, M. FTIR analysis of HDPE."
-
+        "Jung, M. FTIR analysis of HDPE.",
     ],
-
-
-
     "LDPE": [
-
         "Peacock, A. Handbook of Polyethylene.",
-
         "Hopewell, J. Plastics recycling challenges.",
-
         "Cole, M. Microplastic contamination.",
-
         "Thompson, R. Marine plastic pollution.",
-
-        "Singh, P. FTIR characterization of LDPE."
-
+        "Singh, P. FTIR characterization of LDPE.",
     ],
-
-
-
     "PVC": [
-
         "Titow, W. PVC Technology.",
-
         "Mersiowsky, I. Long-term fate of PVC.",
-
         "Andrady, A. Plastics and environment.",
-
         "Lithner, D. Chemical hazards of plastics.",
-
-        "Zhou, Q. FTIR characterization of PVC."
-
-    ]
-
+        "Zhou, Q. FTIR characterization of PVC.",
+    ],
 }
-
 
 
 # =========================================================
@@ -140,35 +83,26 @@ POLYMER_REFERENCES = {
 # =========================================================
 
 def generate_ai_summary(report_data: dict) -> str:
-
     pred = report_data.get("predictions", {})
-
     polymer = pred.get("class", "Unknown")
-
     confidence = pred.get("confidence", 0)
-
-    return (
-
-        f"The analyzed sample was identified as "
-
-        f"{polymer} with a confidence score of "
-
-        f"{confidence:.2f}%. "
-
-        f"The FTIR spectral characteristics strongly "
-
-        f"support the presence of {polymer} polymer chains. "
-
-        f"The detected functional groups and absorption "
-
-        f"bands are consistent with known spectral signatures "
-
-        f"of {polymer}. "
-
-        f"The analysis indicates a reliable classification "
-
-        f"suitable for environmental and material identification studies."
-
+    
+    # Detailed summaries for each polymer type
+    polymer_summaries = {
+        "PET": f"The analyzed sample was identified as Polyethylene Terephthalate (PET) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PET polymer chains. The detected carbonyl stretching at 1715 cm⁻¹ and C-O stretching at 1240 cm⁻¹ are characteristic of the ester functional groups present in PET. This polymer is widely used in beverage bottles and food packaging. The analysis indicates a reliable classification suitable for environmental microplastic identification studies.",
+        "PP": f"The analyzed sample was identified as Polypropylene (PP) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PP polymer chains. The detected CH bending and CH3 deformation peaks at 1455 cm⁻¹ and 1375 cm⁻¹ are characteristic of the aliphatic functional groups in PP. This polymer is commonly found in automotive parts, household items, and packaging materials. The analysis indicates a reliable classification suitable for environmental and material identification studies.",
+        "PS": f"The analyzed sample was identified as Polystyrene (PS) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PS polymer chains. The detected aromatic C=C stretching at 1600 cm⁻¹ and benzene ring vibrations at 1492 cm⁻¹ are characteristic of the aromatic functional groups in PS. This polymer is commonly found in foam insulation, disposable cups, and packaging materials. The analysis indicates a reliable classification suitable for environmental microplastic monitoring.",
+        "HDPE": f"The analyzed sample was identified as High-Density Polyethylene (HDPE) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of HDPE polymer chains. The detected CH2 asymmetric stretching at 2915 cm⁻¹ and CH2 bending at 1470 cm⁻¹ are characteristic of the hydrocarbon functional groups in HDPE. This polymer is widely used in plastic bags, bottles, and containers. The analysis indicates a reliable classification suitable for environmental assessment and waste management studies.",
+        "LDPE": f"The analyzed sample was identified as Low-Density Polyethylene (LDPE) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of LDPE polymer chains. The detected CH2 stretching at 2920 cm⁻¹ and CH2 deformation at 1465 cm⁻¹ are characteristic of the hydrocarbon functional groups in LDPE. This polymer is commonly found in plastic films, bags, and flexible packaging. The analysis indicates a reliable classification suitable for environmental and material identification studies.",
+        "PVC": f"The analyzed sample was identified as Polyvinyl Chloride (PVC) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PVC polymer chains. The detected C-Cl stretching at 600 cm⁻¹ and CH bending at 1250 cm⁻¹ are characteristic of the chlorinated functional groups in PVC. This polymer is widely used in construction materials, pipes, and vinyl products. The analysis indicates a reliable classification suitable for environmental and industrial application studies."
+    }
+    
+    return polymer_summaries.get(polymer, 
+        f"The analyzed sample was identified as {polymer} with a confidence score of {confidence:.2f}%. "
+        f"The FTIR spectral characteristics strongly support the presence of {polymer} polymer chains. "
+        f"The detected functional groups and absorption bands are consistent with known spectral signatures "
+        f"of {polymer}. The analysis indicates a reliable classification suitable for environmental and "
+        f"material identification studies."
     )
 
 
@@ -189,7 +123,7 @@ def generate_pdf_report(report_data: dict) -> str:
             Image,
         )
         from reportlab.lib import colors
-        from reportlab.lib.styles import getSampleStyleSheet
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
         from reportlab.lib.pagesizes import A4
         from reportlab.lib.units import inch
     except ImportError as e:
@@ -197,412 +131,119 @@ def generate_pdf_report(report_data: dict) -> str:
             "reportlab is required to generate PDF reports. Install reportlab in the backend environment."
         ) from e
 
-    report_id = report_data.get(
-        "id",
-        datetime.now().strftime("%Y%m%d%H%M%S")
-    )
-
+    report_id = report_data.get("id", datetime.now().strftime("%Y%m%d%H%M%S"))
     filename = f"report_{report_id}.pdf"
-
     filepath = REPORT_DIR / filename
 
-
-
-    # =====================================================
-    # DOCUMENT SETUP
-    # =====================================================
-
+    # document setup (smaller margins to help single-page output)
     doc = SimpleDocTemplate(
-
-        str(filepath),
-
-        pagesize=A4,
-
-        rightMargin=40,
-
-        leftMargin=40,
-
-        topMargin=40,
-
-        bottomMargin=30
-
+        str(filepath), pagesize=A4, rightMargin=30, leftMargin=30, topMargin=20, bottomMargin=20
     )
 
-
-
     styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name="BodySmall", parent=styles["BodyText"], fontName="Helvetica", fontSize=9, leading=11))
+    styles.add(ParagraphStyle(name="HeadingCompact", parent=styles["Heading2"], fontName="Helvetica-Bold", fontSize=14, leading=16))
 
     elements = []
 
-
-
-    # =====================================================
-    # TITLE
-    # =====================================================
-
-    title = Paragraph(
-
-        "<font size=22><b>Microplastic Polymer Analysis Report</b></font>",
-
-        styles["Title"]
-
-    )
-
-
-
+    # title
+    title = Paragraph("<font size=18><b>Microplastic Polymer Analysis Report</b></font>", styles["Title"])
     elements.append(title)
+    elements.append(Spacer(1, 0.15 * inch))
 
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # BASIC INFO
-    # =====================================================
-
+    # basic info table
     generated_date = datetime.now().strftime("%d %B %Y %H:%M")
-
-
-
     info_table_data = [
-
         ["Report ID", report_id],
-
         ["Generated On", generated_date],
-
         ["Status", report_data.get("status", "Completed")],
-
-        ["Sample ID", report_data.get("sample_id", "N/A")]
-
+        ["Sample ID", report_data.get("sample_id", "N/A")],
     ]
-
-
-
-    info_table = Table(
-
-        info_table_data,
-
-        colWidths=[180, 300]
-
+    info_table = Table(info_table_data, colWidths=[180, 300])
+    info_table.setStyle(
+        TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbeafe")),
+            ("TEXTCOLOR", (0, 0), (-1, -1), colors.black),
+            ("GRID", (0, 0), (-1, -1), 1, colors.grey),
+            ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+            ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ])
     )
-
-
-
-    info_table.setStyle(TableStyle([
-
-        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dbeafe")),
-
-        ("TEXTCOLOR", (0, 0), (-1, -1), colors.black),
-
-        ("GRID", (0, 0), (-1, -1), 1, colors.grey),
-
-        ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
-
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
-
-    ]))
-
-
-
     elements.append(info_table)
+    elements.append(Spacer(1, 0.12 * inch))
 
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # PREDICTION RESULTS
-    # =====================================================
-
+    # prediction results
     pred = report_data.get("predictions", {})
-
     polymer = pred.get("class", "Unknown")
-
     confidence = pred.get("confidence", 0)
-
-
-
-    heading = Paragraph(
-
-        "<font size=18><b>Prediction Results</b></font>",
-
-        styles["Heading2"]
-
-    )
-
-
-
+    heading = Paragraph("<font size=16><b>Prediction Results</b></font>", styles["HeadingCompact"])
     elements.append(heading)
+    elements.append(Spacer(1, 0.12 * inch))
 
-    elements.append(Spacer(1, 0.15 * inch))
-
-
-
-    prediction_data = [
-
-        ["Detected Polymer", polymer],
-
-        ["Confidence Score", f"{confidence:.2f}%"],
-
-        ["Model Used", report_data.get("model_used", "CNN + Random Forest")],
-
-    ]
-
-
-
-    prediction_table = Table(
-
-        prediction_data,
-
-        colWidths=[220, 260]
-
+    prediction_data = [["Detected Polymer", polymer], ["Confidence Score", f"{confidence:.2f}%"], ["Model Used", report_data.get("model_used", "CNN + Random Forest")]]
+    prediction_table = Table(prediction_data, colWidths=[220, 260])
+    prediction_table.setStyle(
+        TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#bfdbfe")),
+            ("GRID", (0, 0), (-1, -1), 1, colors.grey),
+            ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+            ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ])
     )
-
-
-
-    prediction_table.setStyle(TableStyle([
-
-        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#bfdbfe")),
-
-        ("GRID", (0, 0), (-1, -1), 1, colors.grey),
-
-        ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
-
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
-
-    ]))
-
-
-
     elements.append(prediction_table)
+    elements.append(Spacer(1, 0.12 * inch))
 
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # FTIR ANALYSIS
-    # =====================================================
-
-    ftir_heading = Paragraph(
-
-        "<font size=18><b>FTIR Spectral Analysis</b></font>",
-
-        styles["Heading2"]
-
-    )
-
-
-
+    # FTIR analysis
+    ftir_heading = Paragraph("<font size=16><b>FTIR Spectral Analysis</b></font>", styles["HeadingCompact"])
     elements.append(ftir_heading)
+    elements.append(Spacer(1, 0.08 * inch))
 
-    elements.append(Spacer(1, 0.15 * inch))
-    
-    
     polymer_ftir = {
-
-    "PET": [
-
-        "1715 cm<super>-1</super> → Ester carbonyl stretching",
-
-        "1240 cm<super>-1</super> → C-O stretching"
-
-    ],
-
-    "PP": [
-
-        "1455 cm<super>-1</super> → CH bending",
-
-        "1375 cm<super>-1</super> → CH<sub>3</sub> symmetric deformation"
-
-    ],
-
-    "PS": [
-
-        "1600 cm<super>-1</super> → Aromatic C=C stretching",
-
-        "1492 cm<super>-1</super> → Benzene ring vibration"
-
-    ],
-
-    "HDPE": [
-
-        "2915 cm<super>-1</super> → CH<sub>2</sub> asymmetric stretching",
-
-        "1470 cm<super>-1</super> → CH<sub>2</sub> bending"
-
-    ],
-
-    "LDPE": [
-
-        "2920 cm<super>-1</super> → CH<sub>2</sub> stretching",
-
-        "1465 cm<super>-1</super> → CH<sub>2</sub> deformation"
-
-    ],
-
-    "PVC": [
-
-        "600 cm<super>-1</super> → C-Cl stretching",
-
-        "1250 cm<super>-1</super> → CH bending"
-
-    ]
-
-}
-
-
+        "PET": ["1715 cm<super>-1</super> → Ester carbonyl stretching", "1240 cm<super>-1</super> → C-O stretching"],
+        "PP": ["1455 cm<super>-1</super> → CH bending", "1375 cm<super>-1</super> → CH<sub>3</sub> symmetric deformation"],
+        "PS": ["1600 cm<super>-1</super> → Aromatic C=C stretching", "1492 cm<super>-1</super> → Benzene ring vibration"],
+        "HDPE": ["2915 cm<super>-1</super> → CH<sub>2</sub> asymmetric stretching", "1470 cm<super>-1</super> → CH<sub>2</sub> bending"],
+        "LDPE": ["2920 cm<super>-1</super> → CH<sub>2</sub> stretching", "1465 cm<super>-1</super> → CH<sub>2</sub> deformation"],
+        "PVC": ["600 cm<super>-1</super> → C-Cl stretching", "1250 cm<super>-1</super> → CH bending"],
+    }
     ftir_points = polymer_ftir.get(polymer, [])
-
-
-
     for point in ftir_points:
+        elements.append(Paragraph(f"• {point}", styles["BodySmall"]))
+    elements.append(Spacer(1, 0.12 * inch))
 
-        p = Paragraph(f"• {point}", styles["BodyText"])
-
-        elements.append(p)
-
-
-
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # CONFIDENCE BAR
-    # =====================================================
-
-    confidence_heading = Paragraph(
-
-        "<font size=18><b>Confidence Interpretation</b></font>",
-
-        styles["Heading2"]
-
-    )
-
-
-
+    # confidence bar
+    confidence_heading = Paragraph("<font size=16><b>Confidence Interpretation</b></font>", styles["HeadingCompact"])
     elements.append(confidence_heading)
+    elements.append(Spacer(1, 0.08 * inch))
+    confidence_bar = "█" * int(confidence / 10) + "░" * (10 - int(confidence / 10))
+    elements.append(Paragraph(f"<font size=11>{confidence_bar} {confidence:.2f}%</font>", styles["BodySmall"]))
+    elements.append(Spacer(1, 0.12 * inch))
 
-    elements.append(Spacer(1, 0.15 * inch))
-
-
-
-    confidence_bar = "█" * int(confidence / 10)
-
-    confidence_bar += "░" * (10 - int(confidence / 10))
-
-
-
-    confidence_text = Paragraph(
-
-        f"<font size=14>{confidence_bar} {confidence:.2f}%</font>",
-
-        styles["BodyText"]
-
-    )
-
-
-
-    elements.append(confidence_text)
-
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # REFERENCES
-    # =====================================================
-
-    ref_heading = Paragraph(
-
-        "<font size=18><b>Scientific References</b></font>",
-
-        styles["Heading2"]
-
-    )
-
-
-
+    # references
+    ref_heading = Paragraph("<font size=16><b>Scientific References</b></font>", styles["HeadingCompact"])
     elements.append(ref_heading)
-
-    elements.append(Spacer(1, 0.15 * inch))
-
-
-
+    elements.append(Spacer(1, 0.08 * inch))
     references = POLYMER_REFERENCES.get(polymer, [])
-
-
-
     for i, ref in enumerate(references, start=1):
+        elements.append(Paragraph(f"[{i}] {ref}", styles["BodySmall"]))
+        elements.append(Spacer(1, 0.03 * inch))
+    elements.append(Spacer(1, 0.12 * inch))
 
-        para = Paragraph(
-
-            f"[{i}] {ref}",
-
-            styles["BodyText"]
-
-        )
-
-
-
-        elements.append(para)
-
-        elements.append(Spacer(1, 0.05 * inch))
-
-
-
-    elements.append(Spacer(1, 0.3 * inch))
-
-
-
-    # =====================================================
-    # AI SUMMARY
-    # =====================================================
-
-    ai_heading = Paragraph(
-
-        "<font size=18><b>AI Generated Summary</b></font>",
-
-        styles["Heading2"]
-
-    )
-
-
-
+    # AI summary
+    ai_heading = Paragraph("<font size=16><b>AI Generated Summary</b></font>", styles["HeadingCompact"])
     elements.append(ai_heading)
-
-    elements.append(Spacer(1, 0.15 * inch))
-
-
-
+    elements.append(Spacer(1, 0.08 * inch))
     ai_summary = generate_ai_summary(report_data)
+    elements.append(Paragraph(ai_summary, styles["BodySmall"]))
 
-
-
-    summary_para = Paragraph(
-
-        ai_summary,
-
-        styles["BodyText"]
-
-    )
-
-
-
-    elements.append(summary_para)
-
-
-
-    # =====================================================
-    # BUILD PDF
-    # =====================================================
-
+    # build and return
     doc.build(elements)
-
-
-
     return str(filepath)
+    
+    
+    
 
 
 # =========================================================
@@ -748,11 +389,7 @@ async def download_report_pdf(report_id: str):
             )
 
         filepath = generate_pdf_report(report)
-        return FileResponse(
-            path=filepath,
-            media_type='application/pdf',
-            filename=f"report_{report_id}.pdf",
-        )
+        return FileResponse(path=filepath, media_type="application/pdf", filename=f"report_{report_id}.pdf")
     except HTTPException:
         raise
     except Exception as e:
