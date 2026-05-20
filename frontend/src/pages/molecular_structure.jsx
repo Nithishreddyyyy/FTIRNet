@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Atom } from "lucide-react";
 import "@google/model-viewer";
 
 export default function PolymerVisualizer() {
@@ -297,7 +298,7 @@ export default function PolymerVisualizer() {
     else if (selectedPolymer === "ldpe.glb") {
 
       hotspot.innerText =
-        "BRANCHED CHAIN";
+        "BRANCHED ALKANE CHAIN";
 
 
 
@@ -352,173 +353,131 @@ export default function PolymerVisualizer() {
 
 
   return (
-
-    <div style={styles.body}>
-
-      <div style={styles.container}>
-        {/* TITLE */}
-        <h1 style={styles.title}>
-          3D Polymer Visualizer
-        </h1>
-        <p style={styles.subtitle}>
-          Explore common polymer structures with an interactive 3D viewer, functional
-          group highlights, and key FTIR signatures.
-        </p>
-
-
-
-        {/* CONTROLS */}
-
-        <div style={styles.controls}>
-
-          <select
-            value={selectedPolymer}
-            onChange={(e) =>
-              setSelectedPolymer(
-                e.target.value
-              )
-            }
-            style={styles.select}
-          >
-
-            <option value="pp.glb">
-              Polypropylene (PP)
-            </option>
-
-            <option value="ps.glb">
-              Polystyrene (PS)
-            </option>
-
-            <option value="pet.glb">
-              PET
-            </option>
-
-            <option value="hdpe.glb">
-              HDPE
-            </option>
-
-            <option value="ldpe.glb">
-              LDPE
-            </option>
-
-            <option value="pvc.glb">
-              PVC
-            </option>
-
-          </select>
-
-
-
-          <button
-            style={styles.button}
-            onClick={handleFullscreen}
-          >
-            Full Screen
-          </button>
-
-
-
-          <button
-            style={styles.button}
-            onClick={
-              highlightFunctionalGroup
-            }
-          >
-            Highlight Functional Group
-          </button>
-
+    <div className="min-h-screen pt-24 pb-16 px-6">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="p-4 bg-primary-700/10 dark:bg-primary-500/10 rounded-3xl border border-primary-500/20 dark:border-white/10 shadow-lg">
+              <Atom className="w-7 h-7 text-primary-600 dark:text-primary-300" />
+            </div>
+            <h1 className="text-3xl font-black tracking-tight text-[var(--heading-color)]">
+              <span className="text-gradient">3D Polymer Visualizer</span>
+            </h1>
+          </div>
+          <p className="text-sm text-slate-700 dark:text-gray-400 mt-4 font-bold max-w-lg leading-relaxed uppercase tracking-wider">
+            Interactive 3D Structures & Functional Group Highlights
+          </p>
         </div>
 
+        <div className="grid grid-cols-1 xl:grid-cols-[420px_minmax(0,1fr)] gap-10 items-start">
+          <div className="space-y-8">
+            <section className="glass-card p-8 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
+              <div className="space-y-6">
+                <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.3em] px-2">
+                  Select Polymer
+                </label>
+                <select
+                  value={selectedPolymer}
+                  onChange={(e) => setSelectedPolymer(e.target.value)}
+                  className="mt-4 w-full bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-[1.5rem] px-5 py-4 text-[var(--heading-color)] font-black text-base focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer shadow-md"
+                >
+                  <option value="pp.glb">Polypropylene (PP)</option>
+                  <option value="ps.glb">Polystyrene (PS)</option>
+                  <option value="pet.glb">PET</option>
+                  <option value="hdpe.glb">HDPE</option>
+                  <option value="ldpe.glb">LDPE</option>
+                  <option value="pvc.glb">PVC</option>
+                </select>
 
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    type="button"
+                    onClick={handleFullscreen}
+                    className="flex-1 flex items-center justify-center text-center text-[10px] leading-tight px-6 py-3 bg-white dark:bg-white/5 hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-600 dark:hover:text-white dark:hover:border-primary-600 border-2 border-primary-500/30 dark:border-white/10 text-gray-900 dark:text-gray-300 rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:-translate-y-1.5 active:translate-y-0"
+                  >
+                    Full Screen
+                  </button>
+                  <button
+                    type="button"
+                    onClick={highlightFunctionalGroup}
+                    className="flex-1 flex items-center justify-center text-center text-[10px] leading-tight px-6 py-3 bg-white dark:bg-white/5 hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-600 dark:hover:text-white dark:hover:border-primary-600 border-2 border-primary-500/30 dark:border-white/10 text-gray-900 dark:text-gray-300 rounded-[1.5rem] font-black uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:-translate-y-1.5 active:translate-y-0"
+                  >
+                    Highlight Functional Group
+                  </button>
+                </div>
+              </div>
+            </section>
 
-        {/* VIEWER */}
+            <section className="glass-card p-8 border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
+              <div className="space-y-6">
+                <div>
+                  <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-[0.3em] px-2 block mb-3">
+                    Current Polymer
+                  </label>
+                  <p className="text-base font-black text-[var(--heading-color)] tracking-tight px-2">
+                    {info.name}
+                  </p>
+                </div>
+                <div className="space-y-4 text-gray-700 dark:text-gray-300">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
+                      Chemical Formula
+                    </p>
+                    <p className="text-sm font-semibold">{info.formula}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
+                      Density
+                    </p>
+                    <p className="text-sm font-semibold">{info.density}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
+                      Functional Group
+                    </p>
+                    <p className="text-sm font-semibold">{info.functionalGroup}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
+                      Important FTIR Peaks
+                    </p>
+                    <p className="text-sm font-semibold">{info.ftir}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
 
-        <div style={styles.viewerContainer}>
-
-          <model-viewer
-            ref={viewerRef}
-            src={`models/${selectedPolymer}`}
-            camera-controls
-            auto-rotate
-            shadow-intensity="1"
-            exposure="1"
-            environment-image="neutral"
-            camera-orbit="0deg 70deg 3.5m"
-            style={styles.viewer}
-          >
-
-            <button
-              ref={hotspotRef}
-              className="Hotspot"
-              slot="hotspot-functional"
-              data-position="0m 0m 0m"
-              data-normal="0m 1m 0m"
-              style={styles.hotspot}
-            >
-              Functional Group
-            </button>
-
-          </model-viewer>
-
+          <section className="glass-card h-full overflow-hidden border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-white/5">
+            <div className="relative h-full min-h-[680px]">
+              <model-viewer
+                ref={viewerRef}
+                src={`models/${selectedPolymer}`}
+                camera-controls
+                auto-rotate
+                shadow-intensity="1"
+                exposure="1"
+                environment-image="neutral"
+                camera-orbit="0deg 65deg 2.25m"
+                className="w-full h-full bg-slate-950"
+              >
+                <button
+                  ref={hotspotRef}
+                  className="absolute top-6 left-6 rounded-full px-4 py-2 bg-primary-600 text-white text-sm font-black shadow-2xl"
+                  slot="hotspot-functional"
+                  data-position="0m 0m 0m"
+                  data-normal="0m 1m 0m"
+                >
+                  Functional Group
+                </button>
+              </model-viewer>
+            </div>
+          </section>
         </div>
-
-
-
-        {/* INFO CARD */}
-
-        <div style={styles.infoCard}>
-
-          <h2 style={styles.infoTitle}>
-            {info.name}
-          </h2>
-
-
-
-          <p style={styles.infoText}>
-            <strong>
-              Chemical Formula:
-            </strong>{" "}
-            {info.formula}
-          </p>
-
-
-
-          <p style={styles.infoText}>
-            <strong>
-              Density:
-            </strong>{" "}
-            {info.density}
-          </p>
-
-
-
-          <p style={styles.infoText}>
-            <strong>
-              Functional Group:
-            </strong>{" "}
-            {info.functionalGroup}
-          </p>
-
-
-
-          <p style={styles.infoText}>
-            <strong>
-              Important FTIR Peaks:
-            </strong>{" "}
-            {info.ftir}
-          </p>
-
-        </div>
-
       </div>
-
     </div>
-
   );
-
 }
-
-
 
 // =========================
 // STYLES

@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import OverviewCards from '../components/OverviewCards';
-import { LayoutDashboard, TrendingUp, ChevronDown, Loader2 } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, Loader2 } from 'lucide-react';
 import { useDashboard } from '../context/DashboardContext';
 
 const Dashboard = () => {
-  const { stats, polymerDistribution, modelUsage, loading, error, fetchStats } = useDashboard();
-  const [selectedPolymers, setSelectedPolymers] = useState([]);
+  const { stats, modelUsage, loading, error, fetchStats } = useDashboard();
 
   useEffect(() => {
     fetchStats();
   }, [fetchStats]);
-
-  const handleFilterChange = (e) => {
-    const value = e.target.value;
-    if (value === 'all') {
-      setSelectedPolymers([]);
-    } else {
-      setSelectedPolymers(prev =>
-        prev.includes(value) ? prev.filter(p => p !== value) : [...prev, value]
-      );
-    }
-  };
 
   if (loading && !stats) {
     return (
@@ -59,7 +47,7 @@ const Dashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b-2 border-slate-400 dark:border-white/10"
+          className="pb-8 border-b-2 border-slate-400 dark:border-white/10"
         >
           <div className="space-y-1">
             <h1 className="text-2xl font-black tracking-tight text-black dark:text-white flex items-center gap-4">
@@ -72,36 +60,15 @@ const Dashboard = () => {
               Real-time monitoring of microplastic detection and classification metrics from global analysis streams.
             </p>
           </div>
-          <div className="flex items-center gap-4 text-xs font-black text-slate-800 dark:text-gray-400 bg-white dark:bg-white/5 px-8 py-3 rounded-full border-2 border-slate-300 dark:border-white/10 shadow-xl uppercase tracking-[0.25em]">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
-              className="w-4 h-4 rounded-full border-2 border-emerald-600 border-t-transparent"
-            />
-            SYSTEM STATUS: <span className="text-emerald-700 dark:text-emerald-400">LIVE</span>
-          </div>
         </motion.div>
 
         {/* Statistics Grid */}
         <div className="space-y-10">
-          <div className="flex items-center justify-between px-1 flex-wrap gap-4">
+          <div className="px-1">
             <h2 className="text-lg font-black text-slate-950 dark:text-white flex items-center gap-3 tracking-tighter uppercase">
               <TrendingUp className="text-primary-800 dark:text-primary-500 w-4.5 h-4.5" />
               System Performance
             </h2>
-            <div className="relative group/select">
-              <select
-                className="appearance-none bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2 pr-10 text-[9px] font-black text-slate-600 dark:text-gray-400 outline-none focus:ring-2 focus:ring-primary-500/20 shadow-sm transition-all cursor-pointer uppercase tracking-[0.2em] hover:bg-slate-50"
-                onChange={handleFilterChange}
-                value="filter"
-              >
-                <option value="all">All Polymers</option>
-                {Object.entries(polymerDistribution || {}).map(([polymer]) => (
-                  <option key={polymer} value={polymer}>{polymer}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none transition-colors" />
-            </div>
           </div>
           <OverviewCards loading={loading} stats={stats} />
         </div>

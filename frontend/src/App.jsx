@@ -29,10 +29,6 @@ function App() {
         </Routes>
       </main>
 
-      {/* Simple Footer Placeholder */}
-      <footer className="border-t border-primary-500/10 dark:border-white/10 py-8 mt-12 text-center text-sm text-gray-500 relative z-10">
-        <p>&copy; {new Date().getFullYear()} Microplastics Detection & Analysis System. Phase 1.</p>
-      </footer>
     </div>
   );
 }

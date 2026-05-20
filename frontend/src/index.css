@@ -9,28 +9,37 @@
   --color-primary-400: #38bdf8;
   --color-primary-500: #0ea5e9;
   --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
   --color-accent-400: #a78bfa;
   --color-accent-500: #8b5cf6;
   --color-accent-600: #7c3aed;
+  --color-accent-700: #6d28d9;
+  --color-accent-900: #4c1d95;
 
   --color-dark-bg: #09090b;
 }
 
 :root {
-  --bg-color: #f1f5f9;
-  --text-primary: #111827;
-  --text-secondary: #374151;
-  --heading-color: #111827;
-  --bg-gradient: radial-gradient(circle at 0% 0%, #e2e8f0 0%, transparent 50%),
-    radial-gradient(circle at 100% 0%, #cbd5e1 0%, transparent 50%),
-    radial-gradient(circle at 50% 100%, #f8fafc 0%, #f1f5f9 100%);
-  --glass-bg: rgba(226, 232, 240, 0.6);
-  --glass-border: rgba(148, 163, 184, 0.5);
-  --glass-shadow: rgba(15, 23, 42, 0.15);
-  --card-bg: rgba(226, 232, 240, 0.8);
-  --nav-bg: rgba(226, 232, 240, 0.85);
-  --input-bg: #f8fafc;
-  --input-border: #94a3b8;
+  --bg-color: #ebe6df;
+  --text-primary: #5c5348;
+  --text-secondary: #6f665c;
+  --heading-color: #3d3832;
+  --bg-gradient: radial-gradient(circle at 0% 0%, #e8ddd0 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, #ebe4d8 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, #f2ede6 0%, #ebe6df 100%);
+  --glass-bg: rgba(247, 243, 236, 0.78);
+  --glass-border: rgba(168, 152, 136, 0.22);
+  --glass-shadow: rgba(61, 53, 45, 0.07);
+  --card-bg: rgba(248, 244, 238, 0.9);
+  --nav-bg: rgba(245, 241, 234, 0.92);
+  --input-bg: #f2ede6;
+  --input-border: #d4ccc0;
+  --surface-elevated: #f7f4ef;
+  --surface-soft: #f0ebe3;
+  --surface-muted: #e8e2d9;
+  --border-soft: rgba(168, 152, 136, 0.3);
 }
 
 .dark {
@@ -96,4 +105,85 @@
 .group:hover .bg-glow {
   opacity: 0.5;
   transition-duration: 200ms;
+}
+
+/* Warm soft light mode — brand colors unchanged; dark mode (.dark) is unchanged */
+html.light .bg-white {
+  background-color: var(--surface-elevated) !important;
+}
+
+html.light .bg-gray-50,
+html.light .bg-gray-50\/50 {
+  background-color: var(--surface-soft) !important;
+}
+
+html.light .bg-gray-100 {
+  background-color: var(--surface-muted) !important;
+}
+
+html.light .bg-slate-50,
+html.light .bg-slate-50\/50,
+html.light .bg-slate-50\/30 {
+  background-color: var(--surface-soft) !important;
+}
+
+html.light [class*='bg-slate-100'] {
+  background-color: rgba(245, 241, 234, 0.92) !important;
+}
+
+html.light [class*='bg-primary-50'] {
+  background-color: rgba(237, 230, 220, 0.78) !important;
+}
+
+html.light [class*='bg-accent-50'] {
+  background-color: rgba(240, 234, 228, 0.78) !important;
+}
+
+html.light .glass {
+  background-color: var(--glass-bg) !important;
+}
+
+html.light .text-black,
+html.light .text-gray-950,
+html.light .text-slate-950 {
+  color: var(--heading-color) !important;
+}
+
+html.light .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+html.light .text-slate-600,
+html.light .text-slate-700,
+html.light .text-slate-800,
+html.light .text-\[\#1e293b\] {
+  color: var(--text-secondary) !important;
+}
+
+html.light .border-slate-200,
+html.light .border-slate-300,
+html.light .border-slate-400 {
+  border-color: var(--border-soft) !important;
+}
+
+html.light .hover\:bg-slate-50:hover,
+html.light .hover\:bg-gray-50:hover {
+  background-color: var(--surface-muted) !important;
+}
+
+html.light .bg-black {
+  background-color: #0369a1 !important;
+  background-image: linear-gradient(to right, #0369a1, #0284c7) !important;
+}
+
+html.light .shadow-xl {
+  box-shadow:
+    0 12px 28px -8px rgba(61, 53, 45, 0.1),
+    0 4px 12px -4px rgba(61, 53, 45, 0.06) !important;
+}
+
+html.light .shadow-2xl {
+  box-shadow:
+    0 20px 40px -12px rgba(61, 53, 45, 0.12),
+    0 8px 16px -6px rgba(61, 53, 45, 0.06) !important;
 }

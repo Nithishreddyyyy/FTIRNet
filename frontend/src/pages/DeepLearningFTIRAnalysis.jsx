@@ -29,7 +29,6 @@ const DeepLearningFTIRAnalysis = () => {
   const [progress, setProgress] = useState(0);
   const [uploadError, setUploadError] = useState(null);
   const [models, setModels] = useState([]);
-  const [available, setAvailable] = useState(true);
   const fileInputRef = useRef(null);
   const dropZoneRef = useRef(null);
 
@@ -259,7 +258,7 @@ Generated: ${new Date().toLocaleString()}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b-2 border-slate-300 dark:border-white/10"
+          className="pb-8 border-b-2 border-slate-300 dark:border-white/10"
         >
           <div className="space-y-1">
             <h1 className="text-3xl font-black tracking-tight text-black dark:text-white flex items-center gap-4">
@@ -271,13 +270,6 @@ Generated: ${new Date().toLocaleString()}
             <p className="text-sm text-slate-700 dark:text-gray-400 mt-4 font-bold max-w-lg leading-relaxed uppercase tracking-wider">
               Professional AI-powered scientific spectral analysis laboratory.
             </p>
-          </div>
-          <div className="flex items-center gap-4 text-xs font-black text-slate-800 dark:text-gray-400 bg-white dark:bg-white/5 px-8 py-3 rounded-full border-2 border-slate-300 dark:border-white/10 shadow-xl uppercase tracking-[0.25em]">
-            <Activity className="w-5 h-5 text-emerald-600 animate-pulse" />
-            SYSTEM STATUS:{' '}
-            <span className="text-emerald-700 dark:text-emerald-400">
-              {available ? 'OPTIMAL' : 'CONNECTING...'}
-            </span>
           </div>
         </motion.div>
 
