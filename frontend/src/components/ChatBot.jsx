@@ -7,13 +7,11 @@ import {
   X,
   Minus,
   Sparkles,
-  Paperclip,
   Bot,
   User,
   ChevronDown,
   Circle,
   RefreshCw,
-  Loader2,
 } from 'lucide-react';
 
 const ChatBot = () => {
@@ -194,15 +192,8 @@ const ChatBot = () => {
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                       placeholder="Ask about microplastics..."
-                      className="w-full bg-gray-50 dark:bg-white/5 border-2 border-primary-500/30 dark:border-white/10 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary-500/20 text-gray-950 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-600 transition-all shadow-inner"
+                      className="w-full bg-gray-50 dark:bg-white/5 border-2 border-primary-500/30 dark:border-white/10 rounded-2xl py-4 pl-6 pr-6 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-primary-500/20 text-gray-950 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-600 transition-all shadow-inner"
                     />
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                      {isSending ? (
-                        <Loader2 className="w-5 h-5 text-gray-600 animate-spin" />
-                      ) : (
-                        <Paperclip className="w-5 h-5 text-gray-600 hover:text-primary-800 cursor-pointer transition-colors" />
-                      )}
-                    </div>
                   </div>
                   <button
                     onClick={() => handleSend()}

@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Target, FileText } from 'lucide-react';
 
-const POLYMERS = ['PP', 'PE', 'PVC', 'PET', 'HDPE', 'LDPE'];
+const POLYMERS = [
+  'Polypropylene (PP)',
+  'Polyethylene (PE)',
+  'Polyvinyl Chloride (PVC)',
+  'Polyethylene Terephthalate (PET)',
+  'High-Density Polyethylene (HDPE)',
+  'Low-Density Polyethylene (LDPE)',
+];
 
 const OverviewCards = ({ loading = false, stats = null }) => {
   const [showPolymerList, setShowPolymerList] = useState(false);

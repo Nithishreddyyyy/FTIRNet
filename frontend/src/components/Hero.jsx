@@ -24,10 +24,13 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col gap-8"
         >
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-black dark:text-white">
-            AI-Powered <br />
-            <span className="text-gradient">Microplastics</span> <br />
-            Detection
+          <h1 className="font-bold tracking-tight leading-[1.1] text-black dark:text-white">
+            <span className="block text-4xl md:text-6xl lg:text-7xl text-gradient">
+              SpectraVision:
+            </span>
+            <span className="block mt-3 text-xl md:text-3xl lg:text-4xl">
+              Deep Learning Assisted FTIR Spectroscopy for Microplastic Identification
+            </span>
           </h1>
           
           <p className="text-base md:text-lg text-[#1e293b] dark:text-gray-400 max-w-xl leading-relaxed font-medium">

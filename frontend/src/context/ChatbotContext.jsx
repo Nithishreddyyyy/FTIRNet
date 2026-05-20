@@ -16,7 +16,7 @@ export const ChatbotProvider = ({ children }) => {
     {
       id: 1,
       type: 'ai',
-      text: 'Hello! I am your Microplastics AI Assistant. How can I help you with your spectral analysis today?',
+      text: 'Hello! I am your SpectraVision Assistant. How can I help you with your spectral analysis today?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -65,7 +65,7 @@ export const ChatbotProvider = ({ children }) => {
       {
         id: 1,
         type: 'ai',
-        text: 'Hello! I am your Microplastics AI Assistant. How can I help you with your spectral analysis today?',
+        text: 'Hello! I am your SpectraVision Assistant. How can I help you with your spectral analysis today?',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
     ]);

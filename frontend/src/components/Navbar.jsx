@@ -33,7 +33,7 @@ const Navbar = () => {
               <Microscope className="w-5 h-5 text-primary-800 dark:text-primary-500" />
             </div>
             <span className="font-black text-lg tracking-tighter text-black dark:text-white">
-              Microplastics AI
+              SpectraVision
             </span>
           </NavLink>
 
