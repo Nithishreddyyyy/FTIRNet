@@ -298,7 +298,7 @@ export default function PolymerVisualizer() {
     else if (selectedPolymer === "ldpe.glb") {
 
       hotspot.innerText =
-        "BRANCHED CHAIN";
+        "BRANCHED ALKANE CHAIN";
 
 
 

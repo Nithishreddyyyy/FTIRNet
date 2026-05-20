@@ -26,26 +26,26 @@ const AboutUs = () => {
   const teamMembers = [
     {
       nameParts: ['Nithish', 'Reddy'],
-      role: 'Frontend Developer',
-      desc: 'Crafting futuristic user interfaces and seamless digital experiences.',
+      role: 'Machine Learning & Development Lead',
+      desc: 'Implemented and trained machine learning models for polymer classification, handled model evaluation, and analysed prediction results.',
       icon: Layers
     },
     {
       nameParts: ['Anushree'],
-      role: 'Backend Developer',
-      desc: 'Architecting robust server-side logic and database infrastructures.',
+      role: 'Frontend lead & 3D polymer visualization lead',
+      desc: 'Developed the 3D polymer visualization interface and frontend, while contributing to data preprocessing and  designed the sample report generation system for enhanced analysis and user interaction.',
       icon: Activity
     },
     {
       nameParts: ['Natasha', 'Brito'],
-      role: 'Deep Learning Engineer',
-      desc: 'Developing neural networks for advanced spectral pattern recognition.',
+      role: 'Graph Analysis & Visualization Lead',
+      desc: 'Developed FTIR spectral graphs and visualizations, performed peak analysis, and identified functional groups corresponding to different polymer samples for spectral interpretation and analysis. ',
       icon: Cpu
     },
     {
       nameParts: ['Ribhav', 'Pathak'],
-      role: 'Data Processing & Research',
-      desc: 'Expertise in FTIR spectral datasets and environmental impact analysis.',
+      role: 'Project Support and Chatbot Lead',
+      desc: 'Helped support project tasks, participated in testing activities, and assisted with interpreting results and preparing presentations.',
       icon: FileText
     }
   ];
@@ -58,8 +58,8 @@ const AboutUs = () => {
     },
     {
       nameParts: ['Idhaya', 'Kumar'],
-      designation: 'Technical Mentor',
-      desc: 'Mentors the team on AI model development, FTIR integration, and the overall system architecture.'
+      designation: 'Senior Research Scholar',
+      desc: '  Senior research scholar who provided biotech insights and guidance on FTIR spectroscopy usage.'
     }
   ];
 

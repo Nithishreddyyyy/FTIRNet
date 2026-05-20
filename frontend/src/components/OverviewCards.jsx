@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Layers, Target, FileText, Activity } from 'lucide-react';
+import { Layers, Target, FileText } from 'lucide-react';
+
+const POLYMERS = ['PP', 'PE', 'PVC', 'PET', 'HDPE', 'LDPE'];
 
 const OverviewCards = ({ loading = false, stats = null }) => {
-  // Default static cards when no stats available
+  const [showPolymerList, setShowPolymerList] = useState(false);
+
   const cardsData = stats
     ? [
         {
-          title: 'Samples Analyzed',
-          value: stats.total_samples_analyzed || 0,
-          trend: stats.total_samples_analyzed > 1000 ? '+12.5%' : 'Live',
+          title: 'Number of Polymers Used',
+          value: POLYMERS.length,
+          trend: 'View',
           icon: Layers,
           color: 'from-blue-500/10 to-cyan-500/10 dark:from-blue-500/20 dark:to-cyan-500/20',
           iconColor: 'text-cyan-600 dark:text-cyan-400',
+          expandable: true,
         },
         {
           title: 'Detection Accuracy',
@@ -30,23 +34,16 @@ const OverviewCards = ({ loading = false, stats = null }) => {
           color: 'from-purple-500/10 to-indigo-500/10 dark:from-purple-500/20 dark:to-indigo-500/20',
           iconColor: 'text-purple-600 dark:text-purple-400',
         },
-        {
-          title: 'Active Analyses',
-          value: stats.active_analyses || 0,
-          trend: 'Live',
-          icon: Activity,
-          color: 'from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20',
-          iconColor: 'text-orange-600 dark:text-orange-400',
-        },
       ]
     : [
         {
-          title: 'Samples Analyzed',
-          value: '14,205',
-          trend: '+12.5%',
+          title: 'Number of Polymers Used',
+          value: POLYMERS.length,
+          trend: 'View',
           icon: Layers,
           color: 'from-blue-500/10 to-cyan-500/10 dark:from-blue-500/20 dark:to-cyan-500/20',
           iconColor: 'text-cyan-600 dark:text-cyan-400',
+          expandable: true,
         },
         {
           title: 'Detection Accuracy',
@@ -63,14 +60,6 @@ const OverviewCards = ({ loading = false, stats = null }) => {
           icon: FileText,
           color: 'from-purple-500/10 to-indigo-500/10 dark:from-purple-500/20 dark:to-indigo-500/20',
           iconColor: 'text-purple-600 dark:text-purple-400',
-        },
-        {
-          title: 'Active Analyses',
-          value: '24',
-          trend: 'Live',
-          icon: Activity,
-          color: 'from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20',
-          iconColor: 'text-orange-600 dark:text-orange-400',
         },
       ];
 
@@ -99,23 +88,46 @@ const OverviewCards = ({ loading = false, stats = null }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {cardsData.map((card, index) => {
             const Icon = card.icon;
+            const isExpandable = card.expandable;
+
             return (
               <motion.div key={index} variants={itemVariants} className="group relative">
                 <div className="bg-glow opacity-0 dark:opacity-20" />
-                <div className="glass-card relative p-6 h-full flex flex-col border-2 border-slate-300 dark:border-white/10 hover:shadow-2xl hover:border-primary-500/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xl bg-white dark:bg-white/5">
+                <div
+                  role={isExpandable ? 'button' : undefined}
+                  tabIndex={isExpandable ? 0 : undefined}
+                  onClick={isExpandable ? () => setShowPolymerList((prev) => !prev) : undefined}
+                  onKeyDown={
+                    isExpandable
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setShowPolymerList((prev) => !prev);
+                          }
+                        }
+                      : undefined
+                  }
+                  className={`glass-card relative p-6 h-full flex flex-col border-2 border-slate-300 dark:border-white/10 hover:shadow-2xl hover:border-primary-500/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xl bg-white dark:bg-white/5 ${
+                    isExpandable ? 'cursor-pointer' : ''
+                  }`}
+                >
                   <div className="flex justify-between items-start mb-6">
                     <div className={`p-3 rounded-2xl bg-white dark:bg-gradient-to-br ${card.color} border-2 border-slate-200 dark:border-white/5 shadow-md`}>
                       <Icon className={`w-6 h-6 ${card.iconColor}`} />
                     </div>
-                    <span className={`text-[9px] font-black px-3 py-1 rounded-full bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-sm ${
-                      card.trend === 'Live'
-                        ? 'text-primary-800 dark:text-primary-400 animate-pulse'
-                        : 'text-emerald-700 dark:text-emerald-400'
-                    }`}>
+                    <span
+                      className={`text-[9px] font-black px-3 py-1 rounded-full bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-sm ${
+                        card.trend === 'View'
+                          ? 'text-primary-800 dark:text-primary-400'
+                          : card.trend === 'Live'
+                            ? 'text-primary-800 dark:text-primary-400 animate-pulse'
+                            : 'text-emerald-700 dark:text-emerald-400'
+                      }`}
+                    >
                       {card.trend}
                     </span>
                   </div>
@@ -132,6 +144,19 @@ const OverviewCards = ({ loading = false, stats = null }) => {
                       </p>
                     )}
                   </div>
+
+                  {isExpandable && showPolymerList && (
+                    <ul className="mt-4 pt-4 border-t border-slate-200 dark:border-white/10 space-y-2">
+                      {POLYMERS.map((polymer) => (
+                        <li
+                          key={polymer}
+                          className="text-sm font-bold text-slate-800 dark:text-gray-200 tracking-wide"
+                        >
+                          {polymer}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </motion.div>
             );
