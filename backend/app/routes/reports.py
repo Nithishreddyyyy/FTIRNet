@@ -12,6 +12,12 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse, FileResponse
 
+from google import genai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 from app.services.storage_service import (
     create_report as create_report_record,
     delete_report,
@@ -83,27 +89,35 @@ POLYMER_REFERENCES = {
 # =========================================================
 
 def generate_ai_summary(report_data: dict) -> str:
-    pred = report_data.get("predictions", {})
-    polymer = pred.get("class", "Unknown")
-    confidence = pred.get("confidence", 0)
+    try:
+        client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+        
+        pred = report_data.get("predictions", {})
+        polymer = pred.get("class", "Unknown")
+        confidence = pred.get("confidence", 0)
+        model_used = report_data.get("model_used", "Unknown")
+        sample_id = report_data.get("sample_id", "N/A")
+        
+        prompt = f"""Generate a concise summary (2-3 sentences, max 150 words) for a microplastic polymer analysis report with the following details:
+- Sample ID: {sample_id}
+- Detected Polymer: {polymer}
+- Confidence Score: {confidence:.2f}%
+- Model Used: {model_used}
+
+Write in a professional scientific tone suitable for a polymer analysis report. Focus on the significance of the findings and their relevance to environmental microplastic identification."""
+
+        response = client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt
+        )
+        
+        return response.text.strip()
     
-    # Detailed summaries for each polymer type
-    polymer_summaries = {
-        "PET": f"The analyzed sample was identified as Polyethylene Terephthalate (PET) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PET polymer chains. The detected carbonyl stretching at 1715 cm<super>-1</super> and C-O stretching at 1240 cm<super>-1</super> are characteristic of the ester functional groups present in PET. This polymer is widely used in beverage bottles and food packaging. The analysis indicates a reliable classification suitable for environmental microplastic identification studies.",
-        "PP": f"The analyzed sample was identified as Polypropylene (PP) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PP polymer chains. The detected CH bending and CH<sub>3</sub> deformation peaks at 1455 cm<super>-1</super> and 1375 cm<super>-1</super> are characteristic of the aliphatic functional groups in PP. This polymer is commonly found in automotive parts, household items, and packaging materials. The analysis indicates a reliable classification suitable for environmental and material identification studies.",
-        "PS": f"The analyzed sample was identified as Polystyrene (PS) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PS polymer chains. The detected aromatic C=C stretching at 1600 cm<super>-1</super> and benzene ring vibrations at 1492 cm<super>-1</super> are characteristic of the aromatic functional groups in PS. This polymer is commonly found in foam insulation, disposable cups, and packaging materials. The analysis indicates a reliable classification suitable for environmental microplastic monitoring.",
-        "HDPE": f"The analyzed sample was identified as High-Density Polyethylene (HDPE) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of HDPE polymer chains. The detected CH2 asymmetric stretching at 2915 cm<super>-1</super> and CH2 bending at 1470 cm<super>-1</super> are characteristic of the hydrocarbon functional groups in HDPE. This polymer is widely used in plastic bags, bottles, and containers. The analysis indicates a reliable classification suitable for environmental assessment and waste management studies.",
-        "LDPE": f"The analyzed sample was identified as Low-Density Polyethylene (LDPE) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of LDPE polymer chains. The detected CH2 stretching at 2920 cm<super>-1</super> and CH2 deformation at 1465 cm<super>-1</super> are characteristic of the hydrocarbon functional groups in LDPE. This polymer is commonly found in plastic films, bags, and flexible packaging. The analysis indicates a reliable classification suitable for environmental and material identification studies.",
-        "PVC": f"The analyzed sample was identified as Polyvinyl Chloride (PVC) with a confidence score of {confidence:.2f}%. The FTIR spectral characteristics strongly support the presence of PVC polymer chains. The detected C-Cl stretching at 600 cm<super>-1</super> and CH bending at 1250 cm<super>-1</super> are characteristic of the chlorinated functional groups in PVC. This polymer is widely used in construction materials, pipes, and vinyl products. The analysis indicates a reliable classification suitable for environmental and industrial application studies."
-    }
-    
-    return polymer_summaries.get(polymer, 
-        f"The analyzed sample was identified as {polymer} with a confidence score of {confidence:.2f}%. "
-        f"The FTIR spectral characteristics strongly support the presence of {polymer} polymer chains. "
-        f"The detected functional groups and absorption bands are consistent with known spectral signatures "
-        f"of {polymer}. The analysis indicates a reliable classification suitable for environmental and "
-        f"material identification studies."
-    )
+    except Exception as e:
+        pred = report_data.get("predictions", {})
+        polymer = pred.get("class", "Unknown")
+        confidence = pred.get("confidence", 0)
+        return f"ERROR"
 
 
 
