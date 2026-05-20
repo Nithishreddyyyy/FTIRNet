@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Search, Clock, Plus, Filter, Download, Database, Eye, Trash2, ImageIcon } from 'lucide-react';
+import { FileText, Download, Database, Trash2, ImageIcon } from 'lucide-react';
 import { useReports } from '../context/ReportsContext';
 import { useState, useEffect } from 'react';
 import api from '../services/api';
@@ -14,41 +14,13 @@ const Reports = () => {
     setPagination,
     fetchReports,
     deleteReport,
-    searchReports,
-    filterReports,
   } = useReports();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchBy, setSearchBy] = useState('all');
-  const [filterPolymer, setFilterPolymer] = useState('');
-  const [filterStatus, setFilterStatus] = useState('');
   const [reportType, setReportType] = useState('All');
 
   useEffect(() => {
     fetchReports(pagination.limit, pagination.offset);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSearch = async () => {
-    if (searchQuery.length >= 2) {
-      const results = await searchReports(searchQuery, searchBy);
-      if (results && results.length > 0) {
-        // Use local state for search results
-      }
-    }
-  };
-
-  const handleApplyFilter = () => {
-    const filters = {};
-    if (filterPolymer) filters.polymer = filterPolymer;
-    if (filterStatus) filters.status = filterStatus;
-    filterReports(filters);
-  };
-
-  const handleClearFilters = () => {
-    setFilterPolymer('');
-    setFilterStatus('');
-    fetchReports(pagination.limit, 0);
-  };
 
   const handleDelete = async (reportId) => {
     if (window.confirm('Are you sure you want to delete this report?')) {
@@ -106,12 +78,6 @@ const Reports = () => {
 
           <div className="flex flex-wrap items-center gap-4">
             <button
-              onClick={handleClearFilters}
-              className="flex items-center gap-3 px-8 py-3 bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 rounded-2xl text-xs font-black text-slate-800 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/10 transition-all shadow-xl uppercase tracking-[0.2em] hover:-translate-y-1 active:translate-y-0"
-            >
-              <Filter className="w-5 h-5 text-primary-800" /> CLEAR FILTERS
-            </button>
-            <button
               onClick={() => fetchReports(pagination.limit, 0)}
               className="flex items-center gap-3 px-8 py-3 bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 rounded-2xl text-xs font-black text-slate-800 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/10 transition-all shadow-xl uppercase tracking-[0.2em] hover:-translate-y-1 active:translate-y-0"
             >
@@ -135,43 +101,6 @@ const Reports = () => {
               {type}
             </button>
           ))}
-        </div>
-
-        {/* Search and Filter Bar */}
-        <div className="glass-card p-6 flex flex-col md:flex-row items-center gap-6 border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-white/5">
-          <div className="relative flex-1 w-full group">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-primary-800 transition-colors" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              placeholder="Search reports by sample ID, polymer type, or location..."
-              className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-3 pl-14 pr-6 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all placeholder:text-slate-400 shadow-sm"
-            />
-          </div>
-          <div className="flex items-center gap-4">
-            <select
-              value={filterPolymer}
-              onChange={(e) => setFilterPolymer(e.target.value)}
-              className="appearance-none bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2 text-[10px] font-black text-slate-600 dark:text-gray-400 outline-none focus:ring-2 focus:ring-primary-500/20 uppercase tracking-[0.2em]"
-            >
-              <option value="">All Polymers</option>
-              <option value="HDPE">HDPE</option>
-              <option value="LDPE">LDPE</option>
-              <option value="PET">PET</option>
-              <option value="PP">PP</option>
-              <option value="PS">PS</option>
-              <option value="PVC">PVC</option>
-              <option value="PLA">PLA</option>
-            </select>
-            <button
-              onClick={handleApplyFilter}
-              className="text-[10px] font-black px-4 py-2 bg-primary-700 text-white rounded-xl hover:bg-primary-600 transition-all uppercase tracking-[0.2em]"
-            >
-              Apply
-            </button>
-          </div>
         </div>
 
         {/* Loading State */}
