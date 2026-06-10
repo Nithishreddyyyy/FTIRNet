@@ -99,12 +99,46 @@ async def analyze_graph_peaks(file: UploadFile = File(...)):
         # Detect dips (peaks in inverted graph)
         peaks, _ = find_peaks(-smoothed, prominence=0.8, distance=20)
         
+        top_peaks = peaks[np.argsort(smoothed[peaks])[:12]]
+        
+        # Filter top peaks to only those that have a valid functional group
+        valid_peaks = []
+        for p in top_peaks:
+            wn = int(wavenumbers[p])
+            fg = identify_functional_group(wn)
+            if fg is not None:
+                valid_peaks.append(p)
+        
         # Prepare Plot
         fig, ax = plt.subplots(figsize=(14, 7))
         ax.plot(wavenumbers, smoothed, linewidth=2, color="#0369a1", label=f"{sample_id} ({polymer})")
-        ax.scatter(wavenumbers[peaks], smoothed[peaks], s=50, color="#b91c1c", zorder=5)
         
-        top_peaks = peaks[np.argsort(smoothed[peaks])[:12]]
+        # Highlight ONLY the valid peaks with matched functional groups
+        highlight_x = [wavenumbers[p] for p in valid_peaks]
+        highlight_y = [smoothed[p] for p in valid_peaks]
+        ax.scatter(highlight_x, highlight_y, s=50, color="#b91c1c", zorder=5)
+        
+        # Sort valid peaks by wavenumber (left to right) to stagger close peaks correctly
+        sorted_top_peaks = sorted(valid_peaks, key=lambda p: wavenumbers[p])
+        
+        # Calculate dynamic x-axis span for collision threshold (~6% of total span)
+        x_span = np.max(wavenumbers) - np.min(wavenumbers) if len(wavenumbers) > 0 else 1.0
+        collision_threshold = x_span * 0.06
+        
+        # Greedy interval coloring to assign staggering levels for labels
+        assigned_levels = {}
+        for i, p in enumerate(sorted_top_peaks):
+            wn = wavenumbers[p]
+            occupied = set()
+            for prev_p in sorted_top_peaks[:i]:
+                if abs(wavenumbers[prev_p] - wn) < collision_threshold:
+                    if prev_p in assigned_levels:
+                        occupied.add(assigned_levels[prev_p])
+            
+            level = 0
+            while level in occupied:
+                level += 1
+            assigned_levels[p] = level
         
         identified_peaks = []
         
@@ -122,20 +156,26 @@ async def analyze_graph_peaks(file: UploadFile = File(...)):
                 "relevance": relevance
             })
             
+            # Position labels relative to the point in scale-independent offset points
+            level = assigned_levels.get(p, 0)
+            y_offset = -40 - level * 35
+            
             label = f"{wn}\n{fg}"
             ax.annotate(
                 label,
                 xy=(wn, smoothed[p]),
-                xytext=(wn, smoothed[p] - 5),
+                xytext=(0, y_offset),
+                textcoords='offset points',
                 fontsize=8,
                 ha='center',
+                va='top',
                 bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.9),
                 arrowprops=dict(arrowstyle='-', color='gray', lw=0.8)
             )
 
         ax.invert_xaxis()
         ax.set_xlabel("Wavenumber (cm⁻¹)", fontsize=12)
-        ax.set_ylabel("Absorbance", fontsize=12)
+        ax.set_ylabel("Transmittance", fontsize=12)
         ax.set_title("FTIR Spectrum with Peak Detection & Microplastic Markers", fontsize=14)
         ax.legend(fontsize=10)
         ax.grid(alpha=0.2)
