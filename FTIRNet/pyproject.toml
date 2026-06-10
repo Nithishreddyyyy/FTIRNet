@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ftirnet"
+version = "0.1.2"
+description = "Deep Learning Based FTIR Polymer Classification"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "joblib>=1.5.3",
+    "numpy>=2.4.6",
+    "pandas>=3.0.3",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.17.1",
+    "torch>=2.12.0",
+]
+
+[project.scripts]
+ftir = "ftir.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ftir = [
+    "models/*.pth",
+    "models/*.pkl"
+]
