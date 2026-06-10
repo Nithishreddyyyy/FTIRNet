@@ -2,7 +2,7 @@
 
 A comprehensive machine learning system for automated polymer identification using FTIR (Fourier Transform Infrared) spectroscopy.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Project Structure](#project-structure)
@@ -16,7 +16,7 @@ A comprehensive machine learning system for automated polymer identification usi
 - [Development](#development)
 - [Contributing](#contributing)
 
-## 🎯 Overview
+## Overview
 
 SpectraVision is a full-stack application that combines:
 - **Deep Learning Models** - 1D CNN for spectral classification
@@ -27,7 +27,7 @@ SpectraVision is a full-stack application that combines:
 
 The system classifies polymer types from FTIR spectra with **90-95% accuracy**, enabling rapid identification of plastic materials for recycling, quality control, and research applications.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 MiniProject/
@@ -49,7 +49,7 @@ MiniProject/
 └── README.md               # This file
 ```
 
-### 📚 Directory Descriptions
+### Directory Descriptions
 
 | Directory | Purpose | See |
 |-----------|---------|-----|
@@ -66,7 +66,7 @@ MiniProject/
 | **RealWorldSamples/** | Real-world polymer samples for testing | [RealWorldSamples/README.md](RealWorldSamples/README.md) |
 | **app/** | Shared application utilities and models | [app/README.md](app/README.md) |
 
-## 🔑 Key Components
+## Key Components
 
 ### 1. **Backend API** (`backend/`)
 FastAPI-based REST server with endpoints for:
@@ -108,7 +108,7 @@ FastAPI service providing:
 - Guidance on FTIR spectroscopy
 - System help and documentation
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -168,7 +168,7 @@ uvicorn app:app --reload --port 8001
 - **API Docs:** http://localhost:8000/docs
 - **Chatbot:** http://localhost:8001
 
-## 💻 Technology Stack
+## Technology Stack
 
 ### Backend
 - **Framework:** FastAPI
@@ -193,7 +193,7 @@ uvicorn app:app --reload --port 8001
 - **Feature Engineering:** NumPy, Pandas
 - **Visualization:** Matplotlib, Seaborn
 
-## 📥 Installation & Setup
+## Installation & Setup
 
 ### Development Setup
 
@@ -234,7 +234,7 @@ Edit `chatBot/prompts.py`:
 - Behavior guidelines
 - Context and expertise
 
-## 📊 Usage
+## Usage
 
 ### Uploading FTIR Data
 
@@ -280,7 +280,7 @@ This will:
 3. Save best model to `models/`
 4. Generate evaluation reports
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### Data Flow
 
@@ -315,7 +315,7 @@ Chatbot Service (FastAPI)
 LLM Integration (Ollama/OpenAI)
 ```
 
-## 🔬 Supported Polymers
+## Supported Polymers
 
 The system classifies 6 common polymer types:
 
@@ -328,7 +328,7 @@ The system classifies 6 common polymer types:
 | 5 | Polystyrene | PS | Packaging, insulation, toys |
 | 6 | Polyvinyl Chloride | PVC | Pipes, vinyl, flooring |
 
-## 🧪 Development
+## Development
 
 ### Running Tests
 
@@ -366,7 +366,7 @@ npm run lint:fix
 3. **New UI Component:** Add to `frontend/src/components/`
 4. **New Preprocessing:** Add to `preprocessing/preprocess.py`
 
-## 📈 Model Performance
+## Model Performance
 
 Current best model (`models/best_model.pth`):
 - **Overall Accuracy:** 92-95%
@@ -376,7 +376,7 @@ Current best model (`models/best_model.pth`):
 
 See [CNN/results/](CNN/results/) for detailed metrics.
 
-## 📦 Deployment
+## Deployment
 
 ### Docker Deployment
 
@@ -405,7 +405,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]
 - [ ] Load test the system
 - [ ] Document deployment procedures
 
-## 🔄 Workflow
+## Workflow
 
 ### Training New Models
 
@@ -438,7 +438,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]
 4. **Adjust preprocessing** → `preprocessing/preprocess.py`
 5. **Hyperparameter tuning** → `CNN/config.py`
 
-## 📝 Contributing
+## Contributing
 
 ### Guidelines
 
@@ -456,7 +456,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]
 4. Commit with clear messages
 5. Push and create Pull Request
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -480,7 +480,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]
 - Check for outliers in input data
 - Ensure 1700 features in correct range [0,1]
 
-## 📚 Documentation
+## Documentation
 
 See individual directory READMEs:
 - [backend/README.md](backend/README.md) - API documentation
@@ -489,7 +489,7 @@ See individual directory READMEs:
 - [data/README.md](data/README.md) - Data format
 - [preprocessing/README.md](preprocessing/README.md) - Data pipeline
 
-## 📞 Support
+## Support
 
 For questions or issues:
 1. Check relevant README files
@@ -497,18 +497,18 @@ For questions or issues:
 3. Check logs in application output
 4. Consult docstrings in code
 
-## 📄 License
+## License
 
 [Include your license information]
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - FTIR spectroscopy research and data
 - PyTorch deep learning framework
 - FastAPI and Uvicorn
 - React and Vite communities
 
-## 📊 Project Statistics
+## Project Statistics
 
 - **Total Files:** 100+
 - **Python Code:** ~5,000 LOC
@@ -518,14 +518,14 @@ For questions or issues:
 - **Training Data:** 1,000+ spectra
 - **API Endpoints:** 5+
 
-## 🎓 Learn More
+## Learn More
 
 - [FTIR Spectroscopy Basics](https://en.wikipedia.org/wiki/Fourier-transform_infrared_spectroscopy)
 - [PyTorch Tutorials](https://pytorch.org/tutorials/)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [React Documentation](https://react.dev/)
 
-## 📅 Version History
+## Version History
 
 - **v1.0.0** - Initial release with 6 polymer classes
 - **v0.2.0** - Added chatbot integration
