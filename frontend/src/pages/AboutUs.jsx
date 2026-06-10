@@ -7,7 +7,6 @@ import {
   ShieldCheck, 
   Globe, 
   Mail, 
-  ArrowRight,
   FileText,
   Activity,
   Layers,
@@ -80,7 +79,7 @@ const AboutUs = () => {
         <section className="text-center space-y-6 pt-10">
           <h1 className="text-2xl lg:text-4xl font-bold tracking-tight text-slate-950 dark:text-white leading-[1.2] uppercase">
             Meet the Team Behind <br />
-            <span className="text-gradient">Microplastics AI</span>
+            <span className="text-gradient">SpectraVision</span>
           </h1>
           <p className="text-sm text-slate-700 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium uppercase tracking-wide">
             A collaborative effort combining AI-powered environmental research, 
@@ -98,7 +97,7 @@ const AboutUs = () => {
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-[var(--heading-color)] tracking-tighter leading-tight">Redefining Environmental Analysis with Deep Learning</h2>
               <p className="text-[var(--text-secondary)] leading-relaxed font-medium text-base">
-                Microplastics AI was born from the need for faster, more accurate detection of microscopic pollutants. By combining FTIR spectral analysis with neural networks, we aim to provide researchers and policymakers with the data they need to make real environmental changes.
+                SpectraVision was born from the need for faster, more accurate detection of microscopic pollutants. By combining FTIR spectral analysis with neural networks, we aim to provide researchers and policymakers with the data they need to make real environmental changes.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-8">
@@ -180,7 +179,6 @@ const AboutUs = () => {
                   <h4 className="text-xl font-bold text-[var(--heading-color)] tracking-tighter group-hover:text-primary-800 transition-colors leading-tight">{event.title}</h4>
                   <p className="text-base text-gray-800 dark:text-gray-400 font-medium leading-relaxed">{event.desc}</p>
                 </div>
-                <ArrowRight className="w-8 h-8 text-primary-500/40 group-hover:text-primary-800 transition-all group-hover:translate-x-3 hidden md:block" />
               </div>
             ))}
           </div>
