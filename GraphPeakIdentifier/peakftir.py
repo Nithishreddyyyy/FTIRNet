@@ -64,8 +64,18 @@ for _, row in new_df.iterrows():
         distance=20
     )
 
-    # Plot spectrum
+    # Important peaks
+    top_peaks = peaks[np.argsort(smoothed[peaks])[:12]]
 
+    # Filter top peaks to only those that have a valid functional group
+    valid_peaks = []
+    for p in top_peaks:
+        wn = int(wavenumbers[p])
+        fg = identify_functional_group(wn)
+        if fg is not None:
+            valid_peaks.append(p)
+
+    # Plot spectrum
     ax.plot(
         wavenumbers,
         smoothed,
@@ -73,81 +83,64 @@ for _, row in new_df.iterrows():
         label=f"{sample_id} ({polymer})"
     )
 
-    # Mark peaks
-
+    # Highlight ONLY the valid peaks with matched functional groups
+    highlight_x = [wavenumbers[p] for p in valid_peaks]
+    highlight_y = [smoothed[p] for p in valid_peaks]
     ax.scatter(
-        wavenumbers[peaks],
-        smoothed[peaks],
+        highlight_x,
+        highlight_y,
         s=50,
         zorder=5
     )
 
-    # Important peaks
-
-    top_peaks = peaks[np.argsort(smoothed[peaks])[:12]]
-
-    # Label positions
-
-    label_positions = {
-
-        2914: (3200, 79),
-        2846: (2600, 79),
-
-        2360: (2480, 90),
-
-        2158: (1830, 96),
-
-        1648: (1730, 90),
-
-        1536: (1470, 90),
-
-        1466: (1290, 86),
-
-        1044: (1120, 94),
-
-        718: (700, 81)
-    }
+    # Sort valid peaks by wavenumber (left to right) to stagger close peaks correctly
+    sorted_top_peaks = sorted(valid_peaks, key=lambda p: wavenumbers[p])
+    
+    # Calculate dynamic x-axis span for collision threshold (~6% of total span)
+    x_span = np.max(wavenumbers) - np.min(wavenumbers) if len(wavenumbers) > 0 else 1.0
+    collision_threshold = x_span * 0.06
+    
+    # Greedy interval coloring to assign staggering levels for labels
+    assigned_levels = {}
+    for i, p in enumerate(sorted_top_peaks):
+        wn = wavenumbers[p]
+        occupied = set()
+        for prev_p in sorted_top_peaks[:i]:
+            if abs(wavenumbers[prev_p] - wn) < collision_threshold:
+                if prev_p in assigned_levels:
+                    occupied.add(assigned_levels[prev_p])
+        
+        level = 0
+        while level in occupied:
+            level += 1
+        assigned_levels[p] = level
 
     # Add labels
-
     for p in top_peaks:
-
         wn = int(wavenumbers[p])
-
         fg = identify_functional_group(wn)
-
         if fg is None:
             continue
 
         label = f"{wn}\n{fg}"
-
-        if wn in label_positions:
-
-            tx, ty = label_positions[wn]
-
-        else:
-
-            tx = wn
-            ty = smoothed[p] - 8
+        
+        level = assigned_levels.get(p, 0)
+        y_offset = -40 - level * 35
 
         ax.annotate(
             label,
-
             xy=(wn, smoothed[p]),
-
-            xytext=(tx, ty),
-
+            xytext=(0, y_offset),
+            textcoords='offset points',
             fontsize=9,
-
             ha='center',
-
+            va='top',
             bbox=dict(
                 boxstyle="round,pad=0.35",
                 fc="white",
                 ec="gray",
                 alpha=0.95
             ),
-
             arrowprops=dict(
                 arrowstyle='-',
                 color='gray',
@@ -165,7 +158,7 @@ ax.set_xlabel(
 )
 
 ax.set_ylabel(
-    "Absorbance",
+    "Transmittance",
     fontsize=14
 )
 
