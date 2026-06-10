@@ -160,7 +160,7 @@ def generate_ai_summary(report_data: dict) -> str:
 Write in a professional scientific tone suitable for a polymer analysis report. Focus on the significance of the findings and their relevance to environmental microplastic identification."""
 
         response = client.models.generate_content(
-            model="gemini-3.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt
         )
         
